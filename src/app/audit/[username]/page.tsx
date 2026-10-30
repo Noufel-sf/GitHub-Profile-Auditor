@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, use, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -289,3 +289,4 @@ export default function AuditExperiencePage({
     </div>
   );
 }
+

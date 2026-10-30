@@ -619,3 +619,4 @@ export default function AuditReportPage({
     </div>
   );
 }
+

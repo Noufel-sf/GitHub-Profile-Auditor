@@ -14,3 +14,4 @@ export function GithubIcon({ className = "w-4 h-4", ...props }: React.SVGProps<S
     </svg>
   );
 }
+

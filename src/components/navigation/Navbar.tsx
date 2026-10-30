@@ -1,11 +1,24 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Terminal, ShieldAlert, Cpu, Sparkles } from "lucide-react";
+import { Terminal, Volume2, VolumeX } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/8bit/button";
+import { arcadeAudio } from "@/lib/sound/audio";
 
 export function Navbar() {
+  const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    setMuted(arcadeAudio.getMuted());
+  }, []);
+
+  const handleToggleSound = () => {
+    const nextMuted = arcadeAudio.toggleMute();
+    setMuted(nextMuted);
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#30395D] bg-[#080B20]/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -54,15 +67,34 @@ export function Navbar() {
             <span>[03]</span> AUDIT METRICS
           </Link>
           <Link
-            href="/#about"
+            href="/audit/torvalds"
             className="text-[#A5AEC9] hover:text-[#22D3EE] transition-colors flex items-center gap-1.5"
           >
-            <span>[04]</span> ABOUT
+            <span>[04]</span> DEMO
           </Link>
         </nav>
 
-        {/* Action Button */}
+        {/* Sound Toggle & Action Buttons */}
         <div className="flex items-center gap-3">
+          {/* Audio FX Toggle */}
+          <button
+            onClick={handleToggleSound}
+            title={muted ? "Enable Arcade SFX" : "Mute Arcade SFX"}
+            className="p-2 bg-[#111832] border border-[#30395D] hover:border-[#22D3EE] text-[#22D3EE] transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer"
+          >
+            {muted ? (
+              <>
+                <VolumeX className="w-3.5 h-3.5 text-[#EF4444]" />
+                <span className="hidden sm:inline text-[10px] text-[#707B9C]">SFX OFF</span>
+              </>
+            ) : (
+              <>
+                <Volume2 className="w-3.5 h-3.5 text-[#A3E635]" />
+                <span className="hidden sm:inline text-[10px] text-[#A3E635]">SFX ON</span>
+              </>
+            )}
+          </button>
+
           <Link href="/audit/torvalds">
             <Button
               variant="outline"

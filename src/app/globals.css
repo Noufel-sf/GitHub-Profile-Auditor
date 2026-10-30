@@ -118,3 +118,10 @@ body {
   background-size: 100% 4px;
   pointer-events: none;
 }
+
+/* Custom retro arcade cursor for precision devices */
+@media (pointer: fine) {
+  body, button, a, input, select, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}

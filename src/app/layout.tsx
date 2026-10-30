@@ -3,6 +3,8 @@ import { Press_Start_2P, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
+import { ArcadeCursor } from "@/components/effects/ArcadeCursor";
+import { SoundEffectsProvider } from "@/components/effects/SoundEffectsProvider";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -41,9 +43,12 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-[#080B20] text-[#F8FAFC] antialiased selection:bg-[#A855F7]/30 selection:text-[#22D3EE]">
         <div className="scanlines fixed inset-0 z-50 pointer-events-none opacity-20" />
-        <Navbar />
-        <main className="flex-1 flex flex-col relative z-10">{children}</main>
-        <Footer />
+        <ArcadeCursor />
+        <SoundEffectsProvider>
+          <Navbar />
+          <main className="flex-1 flex flex-col relative z-10">{children}</main>
+          <Footer />
+        </SoundEffectsProvider>
       </body>
     </html>
   );
