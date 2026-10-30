@@ -1,26 +1,120 @@
 @import "tailwindcss";
+@import "../components/ui/8bit/styles/retro.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #080B20;
+    --foreground: #F8FAFC;
+
+    --card: #111832;
+    --card-foreground: #F8FAFC;
+
+    --popover: #0D1228;
+    --popover-foreground: #F8FAFC;
+
+    --primary: #A855F7;
+    --primary-foreground: #080B20;
+
+    --secondary: #171F3D;
+    --secondary-foreground: #22D3EE;
+
+    --muted: #171F3D;
+    --muted-foreground: #A5AEC9;
+
+    --accent: #22D3EE;
+    --accent-foreground: #080B20;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #F8FAFC;
+
+    --border: #30395D;
+    --input: #202A4A;
+    --ring: #A855F7;
+
+    --radius: 0px;
   }
 }
 
+@theme {
+  --color-arcade-bg: #080B20;
+  --color-arcade-surface: #0D1228;
+  --color-arcade-card: #111832;
+  --color-arcade-elevated: #171F3D;
+  --color-arcade-border: #30395D;
+  --color-arcade-border-subtle: #202A4A;
+
+  --color-neon-purple: #A855F7;
+  --color-neon-cyan: #22D3EE;
+  --color-neon-pink: #EC4899;
+  --color-neon-green: #A3E635;
+  --color-neon-yellow: #FACC15;
+  --color-neon-blue: #3B82F6;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #A5AEC9;
+  --color-text-muted: #707B9C;
+
+  --font-pixel: var(--font-pixel), "Press Start 2P", monospace;
+  --font-sans: var(--font-sans), "Inter", sans-serif;
+  --font-score: var(--font-score), "Space Grotesk", sans-serif;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080B20;
+  color: #F8FAFC;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+    linear-gradient(to right, rgba(48, 57, 93, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(48, 57, 93, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Custom retro scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080B20;
+}
+::-webkit-scrollbar-thumb {
+  background: #30395D;
+  border: 1px solid #22D3EE;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A855F7;
+}
+
+/* Pixel borders and arcade effects */
+.arcade-box {
+  box-shadow: 0 0 0 2px #30395D, 0 4px 0 0 #000000;
+}
+
+.arcade-box-glow {
+  box-shadow: 0 0 0 2px #30395D, 0 0 15px rgba(168, 85, 247, 0.25);
+}
+
+.arcade-box-cyan {
+  box-shadow: 0 0 0 2px #22D3EE, 0 0 15px rgba(34, 211, 238, 0.25);
+}
+
+.pixel-corners {
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0,
+    calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
 }
