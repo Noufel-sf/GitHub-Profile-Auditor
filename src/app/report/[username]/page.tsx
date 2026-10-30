@@ -32,6 +32,7 @@ import { OverallAuditReport, RepoAuditResult, FindingSeverity } from "@/types/au
 import { GithubIcon } from "@/components/ui/icons";
 import { AuditCharts } from "@/components/dashboard/AuditRadarChart";
 import { ShareModal } from "@/components/dashboard/ShareModal";
+import { AiGeneratorModal } from "@/components/dashboard/AiGeneratorModal";
 import { Share2 } from "lucide-react";
 
 export default function AuditReportPage({
@@ -47,6 +48,7 @@ export default function AuditReportPage({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isBioModalOpen, setIsBioModalOpen] = useState(false);
 
   // Repo filter & sort states
   const [repoFilter, setRepoFilter] = useState<"all" | "best" | "needs_work" | "recent">("all");
@@ -223,11 +225,28 @@ export default function AuditReportPage({
               </div>
 
               {report.profile.bio ? (
-                <p className="text-sm text-[#A5AEC9] leading-relaxed font-sans pt-1">
-                  "{report.profile.bio}"
-                </p>
+                <div className="pt-1">
+                  <p className="text-sm text-[#A5AEC9] leading-relaxed font-sans">
+                    "{report.profile.bio}"
+                  </p>
+                  <button
+                    onClick={() => setIsBioModalOpen(true)}
+                    className="text-[11px] font-mono text-[#A855F7] hover:text-[#22D3EE] flex items-center gap-1 mt-1 cursor-pointer transition-colors"
+                  >
+                    <Sparkles className="w-3 h-3" /> Optimize bio with AI
+                  </button>
+                </div>
               ) : (
-                <p className="text-xs text-[#707B9C] italic">No public bio set</p>
+                <div className="pt-1 flex items-center gap-3">
+                  <span className="text-xs text-[#707B9C] italic">No public bio set</span>
+                  <Button
+                    size="sm"
+                    onClick={() => setIsBioModalOpen(true)}
+                    className="bg-[#A855F7] text-white text-[10px] py-0.5 px-2 font-mono"
+                  >
+                    <Sparkles className="w-3 h-3 mr-1" /> Generate Bio with AI
+                  </Button>
+                </div>
               )}
 
               {/* Meta details */}
@@ -640,6 +659,18 @@ export default function AuditReportPage({
         grade={report.grade}
         isOpen={isShareOpen}
         onClose={() => setIsShareOpen(false)}
+      />
+
+      {/* AI BIO GENERATOR MODAL */}
+      <AiGeneratorModal
+        type="bio"
+        isOpen={isBioModalOpen}
+        onClose={() => setIsBioModalOpen(false)}
+        userData={{
+          username: report.username,
+          languages: report.repositories.map((r) => r.primaryLanguage).filter(Boolean) as string[],
+          strengths: report.strengths.map((s) => s.title),
+        }}
       />
     </div>
   );

@@ -20,6 +20,8 @@ import {
 import { Button } from "@/components/ui/8bit/button";
 import { Badge } from "@/components/ui/8bit/badge";
 import { Progress } from "@/components/ui/8bit/progress";
+import { AiGeneratorModal } from "@/components/dashboard/AiGeneratorModal";
+import { Sparkles } from "lucide-react";
 
 interface RepoDetailData {
   repo: string;
@@ -64,6 +66,7 @@ export default function RepositoryDeepAnalysisPage({
   const [data, setData] = useState<RepoDetailData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isReadmeModalOpen, setIsReadmeModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadRepoAnalysis() {
@@ -247,9 +250,19 @@ export default function RepositoryDeepAnalysisPage({
         <div className="lg:col-span-2 space-y-8">
           {/* Documentation Deep Dive */}
           <div className="bg-[#111832] border-2 border-[#30395D] p-6 space-y-4">
-            <h3 className="font-['Press_Start_2P'] text-xs text-[#22D3EE]">
-              DOCUMENTATION AUDIT
-            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <h3 className="font-['Press_Start_2P'] text-xs text-[#22D3EE]">
+                DOCUMENTATION AUDIT
+              </h3>
+              <Button
+                onClick={() => setIsReadmeModalOpen(true)}
+                size="sm"
+                className="bg-[#A855F7] text-white hover:bg-[#9333ea] border-none text-xs font-mono font-bold"
+              >
+                <Sparkles className="w-3.5 h-3.5 mr-1 text-[#22D3EE]" />
+                Generate README with AI
+              </Button>
+            </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center font-mono">
               <div className="p-3 bg-[#0D1228] border border-[#202A4A]">
@@ -318,6 +331,20 @@ export default function RepositoryDeepAnalysisPage({
           </div>
         </div>
       </div>
+
+      {/* AI README GENERATOR MODAL */}
+      <AiGeneratorModal
+        type="readme"
+        isOpen={isReadmeModalOpen}
+        onClose={() => setIsReadmeModalOpen(false)}
+        repoData={{
+          repo,
+          owner: username,
+          description: null,
+          language: null,
+          hasLicense: data.structure.hasLicense,
+        }}
+      />
     </div>
   );
 }
