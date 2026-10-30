@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useMobile } from "@/hooks/useMobile";
 
 export function ArcadeCursor() {
+  const isMobile = useMobile();
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isPointer, setIsPointer] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only enable on desktop/fine pointers
-    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+    // If on mobile or touch device, do not attach desktop cursor listeners
+    if (isMobile || typeof window === "undefined") {
+      setIsVisible(false);
       return;
     }
 
@@ -18,7 +21,6 @@ export function ArcadeCursor() {
       setPosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
 
-      // Check if hovering over clickable element
       const target = e.target as HTMLElement | null;
       if (target) {
         const interactive = target.closest(
@@ -46,9 +48,12 @@ export function ArcadeCursor() {
       document.documentElement.removeEventListener("mouseleave", onMouseLeave);
       document.documentElement.removeEventListener("mouseenter", onMouseEnter);
     };
-  }, [isVisible]);
+  }, [isMobile, isVisible]);
 
-  if (!isVisible) return null;
+  // Completely removed on mobile devices
+  if (isMobile || !isVisible) {
+    return null;
+  }
 
   return (
     <div
@@ -85,4 +90,3 @@ export function ArcadeCursor() {
     </div>
   );
 }
-

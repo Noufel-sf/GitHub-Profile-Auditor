@@ -8,11 +8,20 @@ import { Button } from "@/components/ui/8bit/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { arcadeAudio } from "@/lib/sound/audio";
 import { useTheme } from "next-themes";
+import { useMobile } from "@/hooks/useMobile";
 
 export function Navbar() {
+  const isMobile = useMobile();
   const [muted, setMuted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  // Close mobile menu if resizing to desktop
+  useEffect(() => {
+    if (!isMobile && mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  }, [isMobile, mobileMenuOpen]);
 
   useEffect(() => {
     setMuted(arcadeAudio.getMuted());

@@ -224,9 +224,9 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
   pointer-events: none;
 }
 
-/* Custom retro arcade cursor for precision devices */
-@media (pointer: fine) {
-  body, button, a, input, select, textarea, [role="button"] {
+/* Custom retro arcade cursor only on precision desktop screens */
+@media (min-width: 769px) and (pointer: fine) {
+  body, button, a, input, select, textarea, [role="button"], .cursor-pointer {
     cursor: none !important;
   }
 }
