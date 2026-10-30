@@ -3,6 +3,38 @@
 
 @layer base {
   :root {
+    --background: #F8FAFC;
+    --foreground: #0F172A;
+
+    --card: #FFFFFF;
+    --card-foreground: #0F172A;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #0F172A;
+
+    --primary: #9333EA;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #F1F5F9;
+    --secondary-foreground: #0F172A;
+
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+
+    --accent: #0284C7;
+    --accent-foreground: #FFFFFF;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #CBD5E1;
+    --input: #E2E8F0;
+    --ring: #9333EA;
+
+    --radius: 0px;
+  }
+
+  .dark {
     --background: #080B20;
     --foreground: #F8FAFC;
 
@@ -30,8 +62,6 @@
     --border: #30395D;
     --input: #202A4A;
     --ring: #A855F7;
-
-    --radius: 0px;
   }
 }
 
@@ -60,16 +90,80 @@
 }
 
 body {
-  background-color: #080B20;
-  color: #F8FAFC;
   font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Dark Mode (Default Arcade Night) */
+.dark body {
+  background-color: #080B20 !important;
+  color: #F8FAFC !important;
   background-image: 
     radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
     linear-gradient(to right, rgba(48, 57, 93, 0.15) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(48, 57, 93, 0.15) 1px, transparent 1px);
   background-size: 100% 100%, 32px 32px, 32px 32px;
   background-attachment: fixed;
-  overflow-x: hidden;
+}
+
+/* Light / White Mode (Day Arcade / Clean Cartridge) */
+html:not(.dark) body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+    linear-gradient(to right, rgba(203, 213, 225, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  background-attachment: fixed;
+}
+
+/* Light Mode Overrides for Retro Palette */
+html:not(.dark) .bg-\[\#080B20\] {
+  background-color: #F8FAFC !important;
+}
+html:not(.dark) .bg-\[\#0D1228\] {
+  background-color: #F1F5F9 !important;
+}
+html:not(.dark) .bg-\[\#111832\] {
+  background-color: #FFFFFF !important;
+}
+html:not(.dark) .bg-\[\#171F3D\] {
+  background-color: #E2E8F0 !important;
+}
+html:not(.dark) .bg-\[\#080B20\]\/90 {
+  background-color: rgba(248, 250, 252, 0.92) !important;
+}
+html:not(.dark) .bg-\[\#080B20\]\/60 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+html:not(.dark) .border-\[\#30395D\] {
+  border-color: #CBD5E1 !important;
+}
+html:not(.dark) .border-\[\#202A4A\] {
+  border-color: #E2E8F0 !important;
+}
+
+html:not(.dark) .text-\[\#F8FAFC\] {
+  color: #0F172A !important;
+}
+html:not(.dark) .text-\[\#A5AEC9\] {
+  color: #475569 !important;
+}
+html:not(.dark) .text-\[\#707B9C\] {
+  color: #64748B !important;
+}
+
+/* Subtle arcade shadows in light mode */
+html:not(.dark) .shadow-\[0_0_25px_rgba\(168\,85\,247\,0\.15\)\] {
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1) !important;
+}
+html:not(.dark) .shadow-\[0_0_30px_rgba\(34\,211\,238\,0\.15\)\] {
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.1) !important;
+}
+html:not(.dark) .scanlines {
+  opacity: 0.03 !important;
 }
 
 /* Custom retro scrollbar */
@@ -77,15 +171,26 @@ body {
   width: 8px;
   height: 8px;
 }
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
   background: #080B20;
 }
-::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   background: #30395D;
   border: 1px solid #22D3EE;
 }
-::-webkit-scrollbar-thumb:hover {
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #A855F7;
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border: 1px solid #9333EA;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #9333EA;
 }
 
 /* Pixel borders and arcade effects */

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { ArcadeCursor } from "@/components/effects/ArcadeCursor";
 import { SoundEffectsProvider } from "@/components/effects/SoundEffectsProvider";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -39,16 +40,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${pressStart2P.variable} ${inter.variable} ${spaceGrotesk.variable} dark`}
+      suppressHydrationWarning
+      className={`${pressStart2P.variable} ${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-screen flex flex-col bg-[#080B20] text-[#F8FAFC] antialiased selection:bg-[#A855F7]/30 selection:text-[#22D3EE]">
-        <div className="scanlines fixed inset-0 z-50 pointer-events-none opacity-20" />
-        <ArcadeCursor />
-        <SoundEffectsProvider>
-          <Navbar />
-          <main className="flex-1 flex flex-col relative z-10">{children}</main>
-          <Footer />
-        </SoundEffectsProvider>
+      <body className="min-h-screen flex flex-col bg-[#080B20] text-[#F8FAFC] antialiased selection:bg-[#A855F7]/30 selection:text-[#22D3EE] transition-colors duration-200">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
+          <div className="scanlines fixed inset-0 z-50 pointer-events-none opacity-20 dark:opacity-20" />
+          <ArcadeCursor />
+          <SoundEffectsProvider>
+            <Navbar />
+            <main className="flex-1 flex flex-col relative z-10">{children}</main>
+            <Footer />
+          </SoundEffectsProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

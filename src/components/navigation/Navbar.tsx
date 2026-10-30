@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Terminal, Volume2, VolumeX } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/8bit/button";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { arcadeAudio } from "@/lib/sound/audio";
 
 export function Navbar() {
@@ -74,8 +75,11 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Sound Toggle & Action Buttons */}
+        {/* Sound Toggle, Theme Toggle & Action Buttons */}
         <div className="flex items-center gap-3">
+          {/* Light / Dark Mode Toggle */}
+          <ThemeToggle />
+
           {/* Audio FX Toggle */}
           <button
             onClick={handleToggleSound}
