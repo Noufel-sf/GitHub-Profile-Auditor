@@ -240,3 +240,4 @@ export function AuditCharts({ report }: AuditChartsProps) {
     </div>
   );
 }
+

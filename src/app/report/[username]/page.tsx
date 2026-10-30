@@ -31,6 +31,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/8bit/c
 import { OverallAuditReport, RepoAuditResult, FindingSeverity } from "@/types/audit";
 import { GithubIcon } from "@/components/ui/icons";
 import { AuditCharts } from "@/components/dashboard/AuditRadarChart";
+import { ShareModal } from "@/components/dashboard/ShareModal";
+import { Share2 } from "lucide-react";
 
 export default function AuditReportPage({
   params,
@@ -44,6 +46,7 @@ export default function AuditReportPage({
   const [report, setReport] = useState<OverallAuditReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   // Repo filter & sort states
   const [repoFilter, setRepoFilter] = useState<"all" | "best" | "needs_work" | "recent">("all");
@@ -166,7 +169,16 @@ export default function AuditReportPage({
           <span className="text-[#22D3EE]">@{report.username}</span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            onClick={() => setIsShareOpen(true)}
+            size="sm"
+            className="bg-[#22D3EE] text-[#080B20] hover:bg-[#06b6d4] border-none text-xs font-mono font-bold"
+          >
+            <Share2 className="w-3.5 h-3.5 mr-1" />
+            Share Badge
+          </Button>
+
           <Link href={`/report/${encodeURIComponent(username)}/roadmap`}>
             <Button className="bg-[#A855F7] text-white hover:bg-[#9333ea] border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
               <Trophy className="w-3.5 h-3.5 mr-1 text-[#FACC15]" />
@@ -620,6 +632,15 @@ export default function AuditReportPage({
           ))}
         </div>
       </div>
+
+      {/* SHARE & EMBED BADGE MODAL */}
+      <ShareModal
+        username={username}
+        score={report.overallScore}
+        grade={report.grade}
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+      />
     </div>
   );
 }
