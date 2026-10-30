@@ -30,6 +30,7 @@ import { Progress } from "@/components/ui/8bit/progress";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/8bit/card";
 import { OverallAuditReport, RepoAuditResult, FindingSeverity } from "@/types/audit";
 import { GithubIcon } from "@/components/ui/icons";
+import { AuditCharts } from "@/components/dashboard/AuditRadarChart";
 
 export default function AuditReportPage({
   params,
@@ -327,6 +328,9 @@ export default function AuditReportPage({
           </div>
         </div>
       )}
+
+      {/* SECTION B.2: INTERACTIVE VISUAL CHARTS */}
+      <AuditCharts report={report} />
 
       {/* SECTION C: 5 CATEGORY CARDS */}
       <div>
