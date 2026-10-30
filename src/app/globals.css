@@ -3,86 +3,96 @@
 
 @layer base {
   :root {
-    --background: #F8FAFC;
-    --foreground: #0F172A;
+    --background: #f8fafc;
+    --foreground: #09090b;
 
-    --card: #FFFFFF;
-    --card-foreground: #0F172A;
+    --card: #ffffff;
+    --card-foreground: #09090b;
 
-    --popover: #FFFFFF;
-    --popover-foreground: #0F172A;
+    --popover: #ffffff;
+    --popover-foreground: #09090b;
 
-    --primary: #9333EA;
-    --primary-foreground: #FFFFFF;
+    --primary: #a855f7;
+    --primary-foreground: #ffffff;
 
-    --secondary: #F1F5F9;
-    --secondary-foreground: #0F172A;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #09090b;
 
-    --muted: #F1F5F9;
-    --muted-foreground: #64748B;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
 
-    --accent: #0284C7;
-    --accent-foreground: #FFFFFF;
+    --accent: #06b6d4;
+    --accent-foreground: #ffffff;
 
-    --destructive: #EF4444;
-    --destructive-foreground: #FFFFFF;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
 
-    --border: #CBD5E1;
-    --input: #E2E8F0;
-    --ring: #9333EA;
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: #a855f7;
 
     --radius: 0px;
   }
 
   .dark {
-    --background: #080B20;
-    --foreground: #F8FAFC;
+    /* Rich obsidian black (not blue #080B20, not flat #000000) */
+    --background: #09090b;
+    --foreground: #fafafa;
 
-    --card: #111832;
-    --card-foreground: #F8FAFC;
+    --card: #121215;
+    --card-foreground: #fafafa;
 
-    --popover: #0D1228;
-    --popover-foreground: #F8FAFC;
+    --popover: #121215;
+    --popover-foreground: #fafafa;
 
-    --primary: #A855F7;
-    --primary-foreground: #080B20;
+    --primary: #a855f7;
+    --primary-foreground: #09090b;
 
-    --secondary: #171F3D;
-    --secondary-foreground: #22D3EE;
+    --secondary: #18181b;
+    --secondary-foreground: #22d3ee;
 
-    --muted: #171F3D;
-    --muted-foreground: #A5AEC9;
+    --muted: #18181b;
+    --muted-foreground: #a1a1aa;
 
-    --accent: #22D3EE;
-    --accent-foreground: #080B20;
+    --accent: #22d3ee;
+    --accent-foreground: #09090b;
 
-    --destructive: #EF4444;
-    --destructive-foreground: #F8FAFC;
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
 
-    --border: #30395D;
-    --input: #202A4A;
-    --ring: #A855F7;
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #a855f7;
   }
 }
 
 @theme {
-  --color-arcade-bg: #080B20;
-  --color-arcade-surface: #0D1228;
-  --color-arcade-card: #111832;
-  --color-arcade-elevated: #171F3D;
-  --color-arcade-border: #30395D;
-  --color-arcade-border-subtle: #202A4A;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  --color-neon-purple: #A855F7;
-  --color-neon-cyan: #22D3EE;
-  --color-neon-pink: #EC4899;
-  --color-neon-green: #A3E635;
-  --color-neon-yellow: #FACC15;
-  --color-neon-blue: #3B82F6;
-
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #A5AEC9;
-  --color-text-muted: #707B9C;
+  --color-neon-purple: #a855f7;
+  --color-neon-cyan: #22d3ee;
+  --color-neon-pink: #ec4899;
+  --color-neon-green: #a3e635;
+  --color-neon-yellow: #facc15;
+  --color-neon-blue: #3b82f6;
 
   --font-pixel: var(--font-pixel), "Press Start 2P", monospace;
   --font-sans: var(--font-sans), "Inter", sans-serif;
@@ -92,78 +102,28 @@
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  background-attachment: fixed;
+  background-size: 100% 100%, 32px 32px, 32px 32px;
 }
 
-/* Dark Mode (Default Arcade Night) */
 .dark body {
-  background-color: #080B20 !important;
-  color: #F8FAFC !important;
+  background-color: #09090b !important;
+  color: #fafafa !important;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
-    linear-gradient(to right, rgba(48, 57, 93, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(48, 57, 93, 0.15) 1px, transparent 1px);
-  background-size: 100% 100%, 32px 32px, 32px 32px;
-  background-attachment: fixed;
+    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+    linear-gradient(to right, rgba(39, 39, 42, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 39, 42, 0.45) 1px, transparent 1px);
 }
 
-/* Light / White Mode (Day Arcade / Clean Cartridge) */
 html:not(.dark) body {
-  background-color: #F8FAFC !important;
-  color: #0F172A !important;
+  background-color: #f8fafc !important;
+  color: #09090b !important;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
-    linear-gradient(to right, rgba(203, 213, 225, 0.45) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
-  background-size: 100% 100%, 32px 32px, 32px 32px;
-  background-attachment: fixed;
-}
-
-/* Light Mode Overrides for Retro Palette */
-html:not(.dark) .bg-\[\#080B20\] {
-  background-color: #F8FAFC !important;
-}
-html:not(.dark) .bg-\[\#0D1228\] {
-  background-color: #F1F5F9 !important;
-}
-html:not(.dark) .bg-\[\#111832\] {
-  background-color: #FFFFFF !important;
-}
-html:not(.dark) .bg-\[\#171F3D\] {
-  background-color: #E2E8F0 !important;
-}
-html:not(.dark) .bg-\[\#080B20\]\/90 {
-  background-color: rgba(248, 250, 252, 0.92) !important;
-}
-html:not(.dark) .bg-\[\#080B20\]\/60 {
-  background-color: rgba(241, 245, 249, 0.8) !important;
-}
-
-html:not(.dark) .border-\[\#30395D\] {
-  border-color: #CBD5E1 !important;
-}
-html:not(.dark) .border-\[\#202A4A\] {
-  border-color: #E2E8F0 !important;
-}
-
-html:not(.dark) .text-\[\#F8FAFC\] {
-  color: #0F172A !important;
-}
-html:not(.dark) .text-\[\#A5AEC9\] {
-  color: #475569 !important;
-}
-html:not(.dark) .text-\[\#707B9C\] {
-  color: #64748B !important;
-}
-
-/* Subtle arcade shadows in light mode */
-html:not(.dark) .shadow-\[0_0_25px_rgba\(168\,85\,247\,0\.15\)\] {
-  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1) !important;
-}
-html:not(.dark) .shadow-\[0_0_30px_rgba\(34\,211\,238\,0\.15\)\] {
-  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.1) !important;
-}
-html:not(.dark) .scanlines {
-  opacity: 0.03 !important;
+    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+    linear-gradient(to right, rgba(228, 228, 231, 0.7) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 228, 231, 0.7) 1px, transparent 1px);
 }
 
 /* Custom retro scrollbar */
@@ -172,38 +132,38 @@ html:not(.dark) .scanlines {
   height: 8px;
 }
 .dark ::-webkit-scrollbar-track {
-  background: #080B20;
+  background: #09090b;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #30395D;
-  border: 1px solid #22D3EE;
+  background: #27272a;
+  border: 1px solid #22d3ee;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #A855F7;
+  background: #a855f7;
 }
 
 html:not(.dark) ::-webkit-scrollbar-track {
-  background: #F8FAFC;
+  background: #f8fafc;
 }
 html:not(.dark) ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border: 1px solid #9333EA;
+  background: #e4e4e7;
+  border: 1px solid #a855f7;
 }
 html:not(.dark) ::-webkit-scrollbar-thumb:hover {
-  background: #9333EA;
+  background: #a855f7;
 }
 
 /* Pixel borders and arcade effects */
 .arcade-box {
-  box-shadow: 0 0 0 2px #30395D, 0 4px 0 0 #000000;
+  box-shadow: 0 0 0 2px var(--border), 0 4px 0 0 rgba(0, 0, 0, 0.5);
 }
 
 .arcade-box-glow {
-  box-shadow: 0 0 0 2px #30395D, 0 0 15px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 0 2px var(--border), 0 0 15px rgba(168, 85, 247, 0.25);
 }
 
 .arcade-box-cyan {
-  box-shadow: 0 0 0 2px #22D3EE, 0 0 15px rgba(34, 211, 238, 0.25);
+  box-shadow: 0 0 0 2px var(--accent), 0 0 15px rgba(34, 211, 238, 0.25);
 }
 
 .pixel-corners {

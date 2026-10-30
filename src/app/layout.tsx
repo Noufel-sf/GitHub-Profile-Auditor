@@ -43,7 +43,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${pressStart2P.variable} ${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-screen flex flex-col bg-[#080B20] text-[#F8FAFC] antialiased selection:bg-[#A855F7]/30 selection:text-[#22D3EE] transition-colors duration-200">
+      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-primary/30 selection:text-neon-cyan transition-colors duration-200">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -30,16 +30,16 @@ export async function GET(
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Space+Grotesk:wght@700&amp;display=swap');
-      .title { font-family: 'Press Start 2P', monospace; font-size: 8px; fill: #F8FAFC; }
-      .score { font-family: 'Space Grotesk', monospace; font-size: 13px; font-weight: bold; fill: #080B20; }
+      .title { font-family: 'Press Start 2P', monospace; font-size: 8px; fill: #fafafa; }
+      .score { font-family: 'Space Grotesk', monospace; font-size: 13px; font-weight: bold; fill: #09090b; }
     </style>
   </defs>
 
   <!-- Left label background -->
-  <rect x="0" y="0" width="130" height="32" fill="#0D1228" stroke="#30395D" stroke-width="2"/>
+  <rect x="0" y="0" width="130" height="32" fill="#121215" stroke="#27272a" stroke-width="2"/>
   
   <!-- Right score background -->
-  <rect x="130" y="0" width="90" height="32" fill="${gradeColor}" stroke="#30395D" stroke-width="2"/>
+  <rect x="130" y="0" width="90" height="32" fill="${gradeColor}" stroke="#27272a" stroke-width="2"/>
 
   <!-- Left decorative pixel accents -->
   <rect x="6" y="6" width="3" height="3" fill="#22D3EE"/>
@@ -61,7 +61,7 @@ export async function GET(
     // Fallback badge on error
     const fallbackSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="32" viewBox="0 0 180 32">
-  <rect width="180" height="32" fill="#111832" stroke="#30395D" stroke-width="2"/>
+  <rect width="180" height="32" fill="#121215" stroke="#27272a" stroke-width="2"/>
   <text x="15" y="20" fill="#EF4444" font-family="monospace" font-size="11">DEVSCOPE // OFFLINE</text>
 </svg>
     `.trim();

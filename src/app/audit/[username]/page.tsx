@@ -137,63 +137,63 @@ export default function AuditExperiencePage({
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12 flex flex-col items-center">
       {/* Top Breadcrumb */}
-      <div className="w-full flex items-center justify-between mb-8 pb-4 border-b border-[#30395D]">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#707B9C]">
-          <Link href="/" className="hover:text-[#22D3EE] transition-colors">
+      <div className="w-full flex items-center justify-between mb-8 pb-4 border-b border-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+          <Link href="/" className="hover:text-neon-cyan transition-colors">
             HOME
           </Link>
           <span>/</span>
-          <span className="text-[#F8FAFC]">AUDIT</span>
+          <span className="text-foreground">AUDIT</span>
           <span>/</span>
-          <span className="text-[#22D3EE]">@{username}</span>
+          <span className="text-neon-cyan">@{username}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#22D3EE] animate-pulse" />
-          <span className="text-xs font-mono text-[#22D3EE]">LIVE AUDIT SESSION</span>
+          <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse" />
+          <span className="text-xs font-mono text-neon-cyan">LIVE AUDIT SESSION</span>
         </div>
       </div>
 
       {/* Main Terminal Box */}
-      <div className="w-full bg-[#111832] border-2 border-[#30395D] shadow-[0_0_30px_rgba(34,211,238,0.15)] relative overflow-hidden">
+      <div className="w-full bg-card border-2 border-border shadow-[0_0_30px_rgba(34,211,238,0.1)] relative overflow-hidden">
         {/* Decorative corner pixels */}
-        <div className="absolute top-0 left-0 w-2 h-2 bg-[#22D3EE]" />
-        <div className="absolute top-0 right-0 w-2 h-2 bg-[#EC4899]" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 bg-[#A3E635]" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#FACC15]" />
+        <div className="absolute top-0 left-0 w-2 h-2 bg-neon-cyan" />
+        <div className="absolute top-0 right-0 w-2 h-2 bg-neon-pink" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 bg-neon-green" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 bg-neon-yellow" />
 
         {/* Terminal Header */}
-        <div className="bg-[#080B20] px-4 py-3 border-b border-[#30395D] flex items-center justify-between">
+        <div className="bg-background px-4 py-3 border-b border-border flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-[#EF4444]" />
-            <div className="w-3 h-3 bg-[#FACC15]" />
-            <div className="w-3 h-3 bg-[#10B981]" />
-            <span className="text-xs font-['Press_Start_2P'] text-[#F8FAFC] ml-2">
+            <div className="w-3 h-3 bg-destructive" />
+            <div className="w-3 h-3 bg-neon-yellow" />
+            <div className="w-3 h-3 bg-neon-green" />
+            <span className="text-xs font-['Press_Start_2P'] text-foreground ml-2">
               DEVSCOPE_ANALYZER // @{username}
             </span>
           </div>
-          <span className="text-[11px] font-mono text-[#A855F7] font-bold">
+          <span className="text-[11px] font-mono text-primary font-bold">
             {progressPercentage}% COMPLETE
           </span>
         </div>
 
         {/* Progress Section */}
-        <div className="p-6 bg-[#0D1228] border-b border-[#202A4A]">
+        <div className="p-6 bg-secondary border-b border-border">
           <div className="flex items-center justify-between mb-3 text-xs font-mono">
-            <span className="text-[#A5AEC9]">CURRENT STAGE:</span>
-            <span className="text-[#22D3EE] font-bold">
+            <span className="text-muted-foreground">CURRENT STAGE:</span>
+            <span className="text-neon-cyan font-bold">
               [{currentStageIndex + 1}/{AUDIT_STAGES.length}] {AUDIT_STAGES[currentStageIndex]?.name}
             </span>
           </div>
           <Progress
             value={progressPercentage}
             variant="retro"
-            progressBg="bg-[#22D3EE]"
+            progressBg="bg-neon-cyan"
             className="h-3"
           />
         </div>
 
         {/* Stages Checklist Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-6 bg-[#080B20]/60 border-b border-[#202A4A] text-xs font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-6 bg-background/60 border-b border-border text-xs font-mono">
           {AUDIT_STAGES.map((stage, idx) => {
             const isDone = idx < currentStageIndex || isComplete;
             const isCurrent = idx === currentStageIndex && !isComplete && !error;
@@ -202,18 +202,18 @@ export default function AuditExperiencePage({
                 key={stage.id}
                 className={`p-2.5 border flex items-center gap-2.5 transition-colors ${
                   isDone
-                    ? "bg-[#111832] border-[#22D3EE]/40 text-[#F8FAFC]"
+                    ? "bg-card border-neon-cyan/40 text-foreground"
                     : isCurrent
-                    ? "bg-[#171F3D] border-[#A855F7] text-[#22D3EE]"
-                    : "bg-[#080B20] border-[#202A4A] text-[#707B9C]"
+                    ? "bg-muted border-primary text-neon-cyan"
+                    : "bg-background border-border text-muted-foreground"
                 }`}
               >
                 {isDone ? (
-                  <CheckCircle2 className="w-4 h-4 text-[#A3E635] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-neon-green shrink-0" />
                 ) : isCurrent ? (
-                  <RefreshCw className="w-4 h-4 text-[#A855F7] animate-spin shrink-0" />
+                  <RefreshCw className="w-4 h-4 text-primary animate-spin shrink-0" />
                 ) : (
-                  <div className="w-4 h-4 border border-[#707B9C] shrink-0 flex items-center justify-center text-[9px]">
+                  <div className="w-4 h-4 border border-border shrink-0 flex items-center justify-center text-[9px] text-muted-foreground">
                     {stage.id}
                   </div>
                 )}
@@ -224,8 +224,8 @@ export default function AuditExperiencePage({
         </div>
 
         {/* Terminal Log Console */}
-        <div className="p-4 bg-[#080B20] font-mono text-xs text-[#22D3EE] h-64 overflow-y-auto space-y-1.5 flex flex-col-reverse">
-          <div className="flex items-center gap-2 text-[#A3E635] pt-2">
+        <div className="p-4 bg-background font-mono text-xs text-neon-cyan h-64 overflow-y-auto space-y-1.5 flex flex-col-reverse">
+          <div className="flex items-center gap-2 text-neon-green pt-2">
             <span className="animate-pulse">&gt;</span>
             <span>{isComplete ? "AUDIT COMPLETED // REDIRECTING..." : "AUDIT ENGINE WORKING..."}</span>
           </div>
@@ -234,14 +234,14 @@ export default function AuditExperiencePage({
               key={index}
               className={`leading-relaxed ${
                 log.includes("FATAL_ERROR")
-                  ? "text-[#EF4444]"
+                  ? "text-destructive"
                   : log.includes("STATUS: Audit complete")
-                  ? "text-[#A3E635] font-bold"
+                  ? "text-neon-green font-bold"
                   : log.includes("ENGINE:")
-                  ? "text-[#EC4899]"
+                  ? "text-neon-pink"
                   : log.includes("PROFILE:")
-                  ? "text-[#F8FAFC]"
-                  : "text-[#A5AEC9]"
+                  ? "text-foreground"
+                  : "text-muted-foreground"
               }`}
             >
               {log}
@@ -250,37 +250,37 @@ export default function AuditExperiencePage({
         </div>
 
         {/* Footer Bar */}
-        <div className="bg-[#111832] p-4 border-t border-[#30395D] flex items-center justify-between">
+        <div className="bg-card p-4 border-t border-border flex items-center justify-between">
           {error ? (
             <div className="flex items-center justify-between w-full">
-              <span className="text-xs font-mono text-[#EF4444] flex items-center gap-1.5">
+              <span className="text-xs font-mono text-destructive flex items-center gap-1.5">
                 <AlertCircle className="w-4 h-4" /> {error}
               </span>
               <Button
                 onClick={() => window.location.reload()}
                 size="sm"
-                className="bg-[#EF4444] text-white hover:bg-[#dc2626]"
+                variant="destructive"
               >
                 <RefreshCw className="w-3.5 h-3.5 mr-1" /> Retry Audit
               </Button>
             </div>
           ) : isComplete ? (
             <div className="flex items-center justify-between w-full">
-              <span className="text-xs font-mono text-[#A3E635] flex items-center gap-1.5">
+              <span className="text-xs font-mono text-neon-green flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4" /> Audit complete! Opening report...
               </span>
               <Link href={`/report/${encodeURIComponent(username)}`}>
                 <Button
                   size="sm"
-                  className="bg-[#22D3EE] text-[#080B20] hover:bg-[#06b6d4] font-bold text-xs"
+                  className="bg-neon-cyan text-black hover:bg-neon-cyan/80 font-bold text-xs"
                 >
                   View Report Now <ArrowRight className="w-3.5 h-3.5 ml-1" />
                 </Button>
               </Link>
             </div>
           ) : (
-            <div className="flex items-center gap-3 text-xs font-mono text-[#707B9C]">
-              <Cpu className="w-4 h-4 text-[#22D3EE] animate-pulse" />
+            <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground">
+              <Cpu className="w-4 h-4 text-neon-cyan animate-pulse" />
               <span>DevScope Deterministic Engine Active</span>
             </div>
           )}

@@ -46,18 +46,18 @@ export function ShareModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="relative w-full max-w-lg bg-[#0D1228] border-2 border-[#30395D] p-6 shadow-[0_0_35px_rgba(34,211,238,0.2)] font-mono">
+      <div className="relative w-full max-w-lg bg-card border-2 border-border p-6 shadow-[0_0_35px_rgba(34,211,238,0.15)] font-mono">
         {/* Pixel Corners */}
-        <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#22D3EE]" />
-        <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#EC4899]" />
-        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#A3E635]" />
-        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#FACC15]" />
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-neon-cyan" />
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-neon-pink" />
+        <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-neon-green" />
+        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-neon-yellow" />
 
         {/* Modal Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-[#202A4A] mb-5">
+        <div className="flex items-center justify-between pb-4 border-b border-border mb-5">
           <div className="flex items-center gap-2">
-            <Trophy className="w-4 h-4 text-[#FACC15]" />
-            <h3 className="font-['Press_Start_2P'] text-xs text-[#F8FAFC]">
+            <Trophy className="w-4 h-4 text-neon-yellow" />
+            <h3 className="font-['Press_Start_2P'] text-xs text-foreground">
               SHARE &amp; EMBED BADGE
             </h3>
           </div>
@@ -66,15 +66,15 @@ export function ShareModal({
               arcadeAudio.playClick();
               onClose();
             }}
-            className="p-1 text-[#707B9C] hover:text-[#EC4899] cursor-pointer"
+            className="p-1 text-muted-foreground hover:text-neon-pink cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Live SVG Badge Preview */}
-        <div className="mb-6 p-4 bg-[#080B20] border border-[#202A4A] text-center space-y-2">
-          <span className="text-[10px] text-[#707B9C] uppercase block">
+        <div className="mb-6 p-4 bg-background border border-border text-center space-y-2">
+          <span className="text-[10px] text-muted-foreground uppercase block">
             Live GitHub README Badge Preview:
           </span>
           <div className="flex items-center justify-center py-2">
@@ -90,9 +90,9 @@ export function ShareModal({
         <div className="space-y-4 mb-6">
           <div>
             <div className="flex items-center justify-between text-xs mb-1.5">
-              <span className="text-[#22D3EE] font-bold">1. MARKDOWN (for GitHub README.md)</span>
+              <span className="text-neon-cyan font-bold">1. MARKDOWN (for GitHub README.md)</span>
               {copiedType === "md" && (
-                <span className="text-[11px] text-[#A3E635] flex items-center gap-1 font-bold">
+                <span className="text-[11px] text-neon-green flex items-center gap-1 font-bold">
                   <Check className="w-3 h-3" /> COPIED!
                 </span>
               )}
@@ -101,12 +101,12 @@ export function ShareModal({
               <input
                 readOnly
                 value={markdownSnippet}
-                className="w-full bg-[#111832] border border-[#30395D] px-3 py-2 text-xs text-[#A5AEC9] select-all focus:outline-none"
+                className="w-full bg-secondary border border-border px-3 py-2 text-xs text-muted-foreground select-all focus:outline-none"
               />
               <Button
                 size="sm"
                 onClick={() => handleCopy(markdownSnippet, "md")}
-                className="bg-[#22D3EE] text-[#080B20] hover:bg-[#06b6d4] font-bold text-xs shrink-0"
+                className="bg-neon-cyan text-black hover:bg-neon-cyan/80 font-bold text-xs shrink-0"
               >
                 <Copy className="w-3.5 h-3.5 mr-1" /> Copy
               </Button>
@@ -115,9 +115,9 @@ export function ShareModal({
 
           <div>
             <div className="flex items-center justify-between text-xs mb-1.5">
-              <span className="text-[#A855F7] font-bold">2. DIRECT AUDIT LINK</span>
+              <span className="text-primary font-bold">2. DIRECT AUDIT LINK</span>
               {copiedType === "url" && (
-                <span className="text-[11px] text-[#A3E635] flex items-center gap-1 font-bold">
+                <span className="text-[11px] text-neon-green flex items-center gap-1 font-bold">
                   <Check className="w-3 h-3" /> COPIED!
                 </span>
               )}
@@ -126,12 +126,12 @@ export function ShareModal({
               <input
                 readOnly
                 value={reportUrl}
-                className="w-full bg-[#111832] border border-[#30395D] px-3 py-2 text-xs text-[#A5AEC9] select-all focus:outline-none"
+                className="w-full bg-secondary border border-border px-3 py-2 text-xs text-muted-foreground select-all focus:outline-none"
               />
               <Button
                 size="sm"
                 onClick={() => handleCopy(reportUrl, "url")}
-                className="bg-[#A855F7] text-white hover:bg-[#9333ea] font-bold text-xs shrink-0"
+                className="bg-primary text-white hover:bg-primary/90 font-bold text-xs shrink-0"
               >
                 <Copy className="w-3.5 h-3.5 mr-1" /> Copy
               </Button>
@@ -140,8 +140,8 @@ export function ShareModal({
         </div>
 
         {/* Social Share Buttons */}
-        <div className="pt-4 border-t border-[#202A4A] flex flex-col sm:flex-row items-center gap-3">
-          <span className="text-xs text-[#707B9C]">SHARE DIRECTLY:</span>
+        <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center gap-3">
+          <span className="text-xs text-muted-foreground">SHARE DIRECTLY:</span>
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <a
               href={twitterUrl}
@@ -151,7 +151,7 @@ export function ShareModal({
             >
               <Button
                 size="sm"
-                className="w-full bg-[#111832] border border-[#30395D] hover:border-[#22D3EE] text-[#22D3EE] text-xs font-mono"
+                className="w-full bg-card border border-border hover:border-neon-cyan text-neon-cyan text-xs font-mono"
               >
                 Post on 𝕏
               </Button>
@@ -164,7 +164,7 @@ export function ShareModal({
             >
               <Button
                 size="sm"
-                className="w-full bg-[#111832] border border-[#30395D] hover:border-[#A855F7] text-[#A855F7] text-xs font-mono"
+                className="w-full bg-card border border-border hover:border-primary text-primary text-xs font-mono"
               >
                 LinkedIn
               </Button>

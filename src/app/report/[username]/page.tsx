@@ -97,11 +97,11 @@ export default function AuditReportPage({
   if (loading) {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center">
-        <div className="w-16 h-16 border-4 border-[#22D3EE] border-t-transparent animate-spin mb-6" />
-        <h2 className="font-['Press_Start_2P'] text-lg text-[#F8FAFC] mb-2">
+        <div className="w-16 h-16 border-4 border-neon-cyan border-t-transparent animate-spin mb-6" />
+        <h2 className="font-['Press_Start_2P'] text-lg text-foreground mb-2">
           COMPUTING AUDIT SCORECARD...
         </h2>
-        <p className="font-mono text-xs text-[#707B9C]">
+        <p className="font-mono text-xs text-muted-foreground">
           Compiling category evidence for @{username}
         </p>
       </div>
@@ -111,15 +111,15 @@ export default function AuditReportPage({
   if (error || !report) {
     return (
       <div className="w-full max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="w-12 h-12 bg-[#EF4444]/20 border border-[#EF4444] text-[#EF4444] flex items-center justify-center mx-auto mb-4 font-bold">
+        <div className="w-12 h-12 bg-destructive/20 border border-destructive text-destructive flex items-center justify-center mx-auto mb-4 font-bold">
           !
         </div>
-        <h2 className="font-['Press_Start_2P'] text-xl text-[#F8FAFC] mb-3">
+        <h2 className="font-['Press_Start_2P'] text-xl text-foreground mb-3">
           AUDIT LOAD FAILED
         </h2>
-        <p className="font-mono text-sm text-[#EF4444] mb-6">{error}</p>
+        <p className="font-mono text-sm text-destructive mb-6">{error}</p>
         <Link href="/">
-          <Button className="bg-[#22D3EE] text-[#080B20] font-bold">
+          <Button className="bg-neon-cyan text-black font-bold">
             Back to Home
           </Button>
         </Link>
@@ -147,43 +147,43 @@ export default function AuditReportPage({
   const getSeverityBadge = (severity: FindingSeverity) => {
     switch (severity) {
       case "critical":
-        return <span className="px-2 py-0.5 bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/40 font-mono text-[10px] font-bold uppercase">CRITICAL</span>;
+        return <span className="px-2 py-0.5 bg-destructive/20 text-destructive border border-destructive/40 font-mono text-[10px] font-bold uppercase">CRITICAL</span>;
       case "high":
-        return <span className="px-2 py-0.5 bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/40 font-mono text-[10px] font-bold uppercase">HIGH</span>;
+        return <span className="px-2 py-0.5 bg-orange-500/20 text-orange-400 border border-orange-500/40 font-mono text-[10px] font-bold uppercase">HIGH</span>;
       case "medium":
-        return <span className="px-2 py-0.5 bg-[#FACC15]/20 text-[#FACC15] border border-[#FACC15]/40 font-mono text-[10px] font-bold uppercase">MEDIUM</span>;
+        return <span className="px-2 py-0.5 bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/40 font-mono text-[10px] font-bold uppercase">MEDIUM</span>;
       default:
-        return <span className="px-2 py-0.5 bg-[#3B82F6]/20 text-[#3B82F6] border border-[#3B82F6]/40 font-mono text-[10px] font-bold uppercase">LOW</span>;
+        return <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/40 font-mono text-[10px] font-bold uppercase">LOW</span>;
     }
   };
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
       {/* Top Breadcrumb & Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#30395D]">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#707B9C]">
-          <Link href="/" className="hover:text-[#22D3EE] transition-colors">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+          <Link href="/" className="hover:text-neon-cyan transition-colors">
             HOME
           </Link>
           <span>/</span>
-          <span className="text-[#F8FAFC]">AUDIT REPORT</span>
+          <span className="text-foreground">AUDIT REPORT</span>
           <span>/</span>
-          <span className="text-[#22D3EE]">@{report.username}</span>
+          <span className="text-neon-cyan">@{report.username}</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           <Button
             onClick={() => setIsShareOpen(true)}
             size="sm"
-            className="bg-[#22D3EE] text-[#080B20] hover:bg-[#06b6d4] border-none text-xs font-mono font-bold"
+            className="bg-neon-cyan text-black hover:bg-neon-cyan/80 border-none text-xs font-mono font-bold"
           >
             <Share2 className="w-3.5 h-3.5 mr-1" />
             Share Badge
           </Button>
 
           <Link href={`/report/${encodeURIComponent(username)}/roadmap`}>
-            <Button className="bg-[#A855F7] text-white hover:bg-[#9333ea] border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-              <Trophy className="w-3.5 h-3.5 mr-1 text-[#FACC15]" />
+            <Button className="bg-primary text-white hover:bg-primary/90 border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+              <Trophy className="w-3.5 h-3.5 mr-1 text-neon-yellow" />
               RPG QUEST LOG ({report.roadmap.length})
             </Button>
           </Link>
@@ -196,7 +196,7 @@ export default function AuditReportPage({
             <Button
               variant="outline"
               size="sm"
-              className="bg-[#111832] text-[#22D3EE] border-[#30395D] hover:bg-[#171F3D] text-xs"
+              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs"
             >
               <GithubIcon className="w-3.5 h-3.5 mr-1" /> View GitHub
             </Button>
@@ -207,42 +207,42 @@ export default function AuditReportPage({
       {/* SECTION A: PROFILE HERO & OVERALL SCORE */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Card */}
-        <div className="lg:col-span-2 bg-[#111832] border-2 border-[#30395D] p-6 relative">
+        <div className="lg:col-span-2 bg-card border-2 border-border p-6 relative">
           <div className="flex flex-col sm:flex-row items-start gap-6">
             <img
               src={report.profile.avatar_url}
               alt={report.username}
-              className="w-24 h-24 border-2 border-[#22D3EE] object-cover shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+              className="w-24 h-24 border-2 border-neon-cyan object-cover shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.25)]"
             />
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="font-['Press_Start_2P'] text-lg sm:text-xl text-[#F8FAFC]">
+                <h1 className="font-['Press_Start_2P'] text-lg sm:text-xl text-foreground">
                   {report.profile.name || report.profile.login}
                 </h1>
-                <span className="text-xs font-mono px-2 py-0.5 bg-[#22D3EE]/20 text-[#22D3EE] border border-[#22D3EE]/40 font-bold">
+                <span className="text-xs font-mono px-2 py-0.5 bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/40 font-bold">
                   @{report.profile.login}
                 </span>
               </div>
 
               {report.profile.bio ? (
                 <div className="pt-1">
-                  <p className="text-sm text-[#A5AEC9] leading-relaxed font-sans">
+                  <p className="text-sm text-muted-foreground leading-relaxed font-sans">
                     "{report.profile.bio}"
                   </p>
                   <button
                     onClick={() => setIsBioModalOpen(true)}
-                    className="text-[11px] font-mono text-[#A855F7] hover:text-[#22D3EE] flex items-center gap-1 mt-1 cursor-pointer transition-colors"
+                    className="text-[11px] font-mono text-primary hover:text-neon-cyan flex items-center gap-1 mt-1 cursor-pointer transition-colors"
                   >
                     <Sparkles className="w-3 h-3" /> Optimize bio with AI
                   </button>
                 </div>
               ) : (
                 <div className="pt-1 flex items-center gap-3">
-                  <span className="text-xs text-[#707B9C] italic">No public bio set</span>
+                  <span className="text-xs text-muted-foreground italic">No public bio set</span>
                   <Button
                     size="sm"
                     onClick={() => setIsBioModalOpen(true)}
-                    className="bg-[#A855F7] text-white text-[10px] py-0.5 px-2 font-mono"
+                    className="bg-primary text-white text-[10px] py-0.5 px-2 font-mono"
                   >
                     <Sparkles className="w-3 h-3 mr-1" /> Generate Bio with AI
                   </Button>
@@ -250,10 +250,10 @@ export default function AuditReportPage({
               )}
 
               {/* Meta details */}
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#707B9C] pt-3">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground pt-3">
                 {report.profile.location && (
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#22D3EE]" /> {report.profile.location}
+                    <MapPin className="w-3.5 h-3.5 text-neon-cyan" /> {report.profile.location}
                   </span>
                 )}
                 {report.profile.blog && (
@@ -261,13 +261,13 @@ export default function AuditReportPage({
                     href={report.profile.blog.startsWith("http") ? report.profile.blog : `https://${report.profile.blog}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1 text-[#22D3EE] hover:underline"
+                    className="flex items-center gap-1 text-neon-cyan hover:underline"
                   >
                     <LinkIcon className="w-3.5 h-3.5" /> {report.profile.blog.replace(/^https?:\/\//, "")}
                   </a>
                 )}
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-[#A855F7]" /> Joined{" "}
+                  <Calendar className="w-3.5 h-3.5 text-primary" /> Joined{" "}
                   {new Date(report.profile.created_at).toLocaleDateString("en-US", {
                     month: "short",
                     year: "numeric",
@@ -278,52 +278,52 @@ export default function AuditReportPage({
           </div>
 
           {/* Stat counters */}
-          <div className="grid grid-cols-3 gap-3 mt-6 pt-6 border-t border-[#202A4A] text-center font-mono">
-            <div className="p-2.5 bg-[#0D1228] border border-[#202A4A]">
-              <span className="text-[10px] text-[#707B9C] block">PUBLIC REPOS</span>
-              <span className="text-lg font-bold text-[#F8FAFC]">{report.profile.public_repos}</span>
+          <div className="grid grid-cols-3 gap-3 mt-6 pt-6 border-t border-border text-center font-mono">
+            <div className="p-2.5 bg-secondary border border-border">
+              <span className="text-[10px] text-muted-foreground block">PUBLIC REPOS</span>
+              <span className="text-lg font-bold text-foreground">{report.profile.public_repos}</span>
             </div>
-            <div className="p-2.5 bg-[#0D1228] border border-[#202A4A]">
-              <span className="text-[10px] text-[#707B9C] block">FOLLOWERS</span>
-              <span className="text-lg font-bold text-[#22D3EE]">{report.profile.followers}</span>
+            <div className="p-2.5 bg-secondary border border-border">
+              <span className="text-[10px] text-muted-foreground block">FOLLOWERS</span>
+              <span className="text-lg font-bold text-neon-cyan">{report.profile.followers}</span>
             </div>
-            <div className="p-2.5 bg-[#0D1228] border border-[#202A4A]">
-              <span className="text-[10px] text-[#707B9C] block">FOLLOWING</span>
-              <span className="text-lg font-bold text-[#A855F7]">{report.profile.following}</span>
+            <div className="p-2.5 bg-secondary border border-border">
+              <span className="text-[10px] text-muted-foreground block">FOLLOWING</span>
+              <span className="text-lg font-bold text-primary">{report.profile.following}</span>
             </div>
           </div>
         </div>
 
         {/* OVERALL SCORECARD */}
-        <div className="bg-[#111832] border-2 border-[#30395D] p-6 flex flex-col justify-between relative overflow-hidden shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+        <div className="bg-card border-2 border-border p-6 flex flex-col justify-between relative overflow-hidden shadow-[0_0_20px_rgba(168,85,247,0.15)]">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-['Press_Start_2P'] text-[#A855F7]">
+            <span className="text-xs font-['Press_Start_2P'] text-primary">
               OVERALL SCORE
             </span>
-            <div className="w-8 h-8 bg-[#A855F7]/20 border border-[#A855F7] flex items-center justify-center font-['Press_Start_2P'] text-sm text-[#F8FAFC]">
+            <div className="w-8 h-8 bg-primary/20 border border-primary flex items-center justify-center font-['Press_Start_2P'] text-sm text-foreground">
               {report.grade}
             </div>
           </div>
 
           <div className="my-auto text-center py-4">
-            <div className="font-['Space_Grotesk'] text-6xl font-bold tracking-tight text-[#F8FAFC] flex items-baseline justify-center gap-1">
+            <div className="font-['Space_Grotesk'] text-6xl font-bold tracking-tight text-foreground flex items-baseline justify-center gap-1">
               <span>{report.overallScore}</span>
-              <span className="text-xl text-[#707B9C] font-mono">/100</span>
+              <span className="text-xl text-muted-foreground font-mono">/100</span>
             </div>
-            <p className="font-['Press_Start_2P'] text-[11px] text-[#22D3EE] mt-3 tracking-wider">
+            <p className="font-['Press_Start_2P'] text-[11px] text-neon-cyan mt-3 tracking-wider">
               {report.gradeLabel}
             </p>
           </div>
 
-          <div className="space-y-2 pt-4 border-t border-[#202A4A] text-xs font-mono">
-            <div className="flex justify-between text-[#A5AEC9]">
+          <div className="space-y-2 pt-4 border-t border-border text-xs font-mono">
+            <div className="flex justify-between text-muted-foreground">
               <span>DETERMINISTIC WEIGHTING</span>
-              <span className="text-[#A3E635]">100% AUDITED</span>
+              <span className="text-neon-green">100% AUDITED</span>
             </div>
             <Progress
               value={report.overallScore}
               variant="retro"
-              progressBg={report.overallScore >= 75 ? "bg-[#A3E635]" : report.overallScore >= 50 ? "bg-[#FACC15]" : "bg-[#EF4444]"}
+              progressBg={report.overallScore >= 75 ? "bg-neon-green" : report.overallScore >= 50 ? "bg-neon-yellow" : "bg-destructive"}
               className="h-2.5"
             />
           </div>
@@ -332,29 +332,29 @@ export default function AuditReportPage({
 
       {/* SECTION B: AI EXECUTIVE ANALYSIS */}
       {report.aiAnalysis && (
-        <div className="bg-gradient-to-r from-[#111832] via-[#171F3D] to-[#111832] border-2 border-[#30395D] p-6 relative">
+        <div className="bg-card border-2 border-border p-6 relative">
           <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-[#22D3EE]" />
-            <span className="font-['Press_Start_2P'] text-xs text-[#22D3EE]">
+            <Sparkles className="w-5 h-5 text-neon-cyan" />
+            <span className="font-['Press_Start_2P'] text-xs text-neon-cyan">
               AI ARCHITECT SYNTHESIS
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/40 ml-auto">
+            <span className="text-[10px] font-mono px-2 py-0.5 bg-primary/20 text-primary border border-primary/40 ml-auto">
               ARCHETYPE: {report.aiAnalysis.developerArchetype}
             </span>
           </div>
 
-          <p className="text-sm text-[#F8FAFC] leading-relaxed mb-4 font-sans">
+          <p className="text-sm text-foreground leading-relaxed mb-4 font-sans">
             {report.aiAnalysis.summary}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-[#202A4A] text-xs font-mono">
-            <div className="p-3 bg-[#080B20]/60 border border-[#202A4A]">
-              <span className="text-[#A855F7] font-bold block mb-1">EXECUTIVE TAKEAWAY:</span>
-              <p className="text-[#A5AEC9]">{report.aiAnalysis.executiveTakeaway}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-border text-xs font-mono">
+            <div className="p-3 bg-secondary border border-border">
+              <span className="text-primary font-bold block mb-1">EXECUTIVE TAKEAWAY:</span>
+              <p className="text-muted-foreground">{report.aiAnalysis.executiveTakeaway}</p>
             </div>
-            <div className="p-3 bg-[#080B20]/60 border border-[#202A4A]">
-              <span className="text-[#22D3EE] font-bold block mb-1">INTERVIEW READINESS:</span>
-              <p className="text-[#A5AEC9]">{report.aiAnalysis.interviewReadiness}</p>
+            <div className="p-3 bg-secondary border border-border">
+              <span className="text-neon-cyan font-bold block mb-1">INTERVIEW READINESS:</span>
+              <p className="text-muted-foreground">{report.aiAnalysis.interviewReadiness}</p>
             </div>
           </div>
         </div>
@@ -366,40 +366,40 @@ export default function AuditReportPage({
       {/* SECTION C: 5 CATEGORY CARDS */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-['Press_Start_2P'] text-sm sm:text-base text-[#F8FAFC]">
+          <h2 className="font-['Press_Start_2P'] text-sm sm:text-base text-foreground">
             CATEGORY SCORECARDS
           </h2>
-          <span className="text-xs font-mono text-[#707B9C]">WEIGHTED TO 100%</span>
+          <span className="text-xs font-mono text-muted-foreground">WEIGHTED TO 100%</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(report.categories).map(([key, cat]) => (
             <div
               key={key}
-              className="bg-[#111832] border-2 border-[#30395D] p-5 flex flex-col justify-between hover:border-[#22D3EE] transition-all"
+              className="bg-card border-2 border-border p-5 flex flex-col justify-between hover:border-neon-cyan transition-all"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-['Press_Start_2P'] text-[#F8FAFC]">
+                  <span className="text-xs font-['Press_Start_2P'] text-foreground">
                     {cat.title}
                   </span>
-                  <span className="text-xs font-mono px-2 py-0.5 bg-[#171F3D] text-[#22D3EE] border border-[#30395D]">
+                  <span className="text-xs font-mono px-2 py-0.5 bg-muted text-neon-cyan border border-border">
                     {Math.round(cat.weight * 100)}%
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-3">
-                  <span className="font-['Space_Grotesk'] text-3xl font-bold text-[#F8FAFC]">
+                  <span className="font-['Space_Grotesk'] text-3xl font-bold text-foreground">
                     {cat.score}
                   </span>
-                  <span className="text-xs font-mono text-[#707B9C]">/100</span>
+                  <span className="text-xs font-mono text-muted-foreground">/100</span>
                   <span
                     className={`text-[10px] font-mono ml-auto uppercase font-bold ${
                       cat.status === "exceptional"
-                        ? "text-[#A3E635]"
+                        ? "text-neon-green"
                         : cat.status === "good"
-                        ? "text-[#22D3EE]"
-                        : "text-[#EF4444]"
+                        ? "text-neon-cyan"
+                        : "text-destructive"
                     }`}
                   >
                     [{cat.status.replace("_", " ")}]
@@ -409,27 +409,27 @@ export default function AuditReportPage({
                 <Progress
                   value={cat.score}
                   variant="retro"
-                  progressBg={cat.score >= 75 ? "bg-[#A3E635]" : cat.score >= 50 ? "bg-[#FACC15]" : "bg-[#EF4444]"}
+                  progressBg={cat.score >= 75 ? "bg-neon-green" : cat.score >= 50 ? "bg-neon-yellow" : "bg-destructive"}
                   className="h-2 mb-4"
                 />
 
-                <p className="text-xs text-[#A5AEC9] leading-relaxed mb-4">
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
                   {cat.summary}
                 </p>
               </div>
 
               {/* Individual checks list */}
-              <div className="space-y-1.5 pt-3 border-t border-[#202A4A] text-[11px] font-mono">
+              <div className="space-y-1.5 pt-3 border-t border-border text-[11px] font-mono">
                 {cat.checks.map((check) => (
-                  <div key={check.id} className="flex items-center justify-between text-[#A5AEC9]">
+                  <div key={check.id} className="flex items-center justify-between text-muted-foreground">
                     <span className="truncate pr-2">{check.name}</span>
                     <span
                       className={`font-bold ${
                         check.status === "pass"
-                          ? "text-[#A3E635]"
+                          ? "text-neon-green"
                           : check.status === "warning"
-                          ? "text-[#FACC15]"
-                          : "text-[#EF4444]"
+                          ? "text-neon-yellow"
+                          : "text-destructive"
                       }`}
                     >
                       {check.status === "pass" ? "PASS" : check.status === "warning" ? "WARN" : "FAIL"}
@@ -445,16 +445,16 @@ export default function AuditReportPage({
       {/* SECTION D: STRENGTHS & WEAKNESSES */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Strengths */}
-        <div className="bg-[#111832] border-2 border-[#30395D] p-6">
-          <div className="flex items-center gap-2 mb-6 text-[#A3E635]">
+        <div className="bg-card border-2 border-border p-6">
+          <div className="flex items-center gap-2 mb-6 text-neon-green">
             <CheckCircle2 className="w-5 h-5" />
-            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-[#F8FAFC]">
+            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-foreground">
               VERIFIED STRENGTHS ({report.strengths.length})
             </h3>
           </div>
 
           {report.strengths.length === 0 ? (
-            <p className="text-xs font-mono text-[#707B9C]">
+            <p className="text-xs font-mono text-muted-foreground">
               No prominent strengths detected across the audited criteria.
             </p>
           ) : (
@@ -462,17 +462,17 @@ export default function AuditReportPage({
               {report.strengths.map((str) => (
                 <div
                   key={str.id}
-                  className="p-3.5 bg-[#0D1228] border-l-4 border-l-[#A3E635] border border-[#202A4A]"
+                  className="p-3.5 bg-secondary border-l-4 border-l-neon-green border border-border"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-xs font-mono font-bold text-[#F8FAFC]">
+                    <h4 className="text-xs font-mono font-bold text-foreground">
                       {str.title}
                     </h4>
-                    <span className="text-[10px] font-mono text-[#A3E635] uppercase">VERIFIED</span>
+                    <span className="text-[10px] font-mono text-neon-green uppercase">VERIFIED</span>
                   </div>
-                  <p className="text-xs text-[#A5AEC9] mb-2">{str.description}</p>
-                  <div className="text-[11px] font-mono text-[#707B9C] bg-[#080B20] p-2 border border-[#202A4A]">
-                    <span className="text-[#22D3EE]">&gt; Evidence:</span> {str.evidence}
+                  <p className="text-xs text-muted-foreground mb-2">{str.description}</p>
+                  <div className="text-[11px] font-mono text-muted-foreground bg-background p-2 border border-border">
+                    <span className="text-neon-cyan">&gt; Evidence:</span> {str.evidence}
                   </div>
                 </div>
               ))}
@@ -481,16 +481,16 @@ export default function AuditReportPage({
         </div>
 
         {/* Weaknesses / Issues */}
-        <div className="bg-[#111832] border-2 border-[#30395D] p-6">
-          <div className="flex items-center gap-2 mb-6 text-[#EF4444]">
+        <div className="bg-card border-2 border-border p-6">
+          <div className="flex items-center gap-2 mb-6 text-destructive">
             <AlertTriangle className="w-5 h-5" />
-            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-[#F8FAFC]">
+            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-foreground">
               AREAS FOR IMPROVEMENT ({report.weaknesses.length})
             </h3>
           </div>
 
           {report.weaknesses.length === 0 ? (
-            <p className="text-xs font-mono text-[#A3E635]">
+            <p className="text-xs font-mono text-neon-green">
               Outstanding! No major deficiencies detected across audited metrics.
             </p>
           ) : (
@@ -498,21 +498,21 @@ export default function AuditReportPage({
               {report.weaknesses.map((weak) => (
                 <div
                   key={weak.id}
-                  className="p-3.5 bg-[#0D1228] border-l-4 border-l-[#EF4444] border border-[#202A4A]"
+                  className="p-3.5 bg-secondary border-l-4 border-l-destructive border border-border"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-xs font-mono font-bold text-[#F8FAFC]">
+                    <h4 className="text-xs font-mono font-bold text-foreground">
                       {weak.title}
                     </h4>
                     {getSeverityBadge(weak.severity)}
                   </div>
-                  <p className="text-xs text-[#A5AEC9] mb-2">{weak.description}</p>
-                  <div className="text-[11px] font-mono text-[#707B9C] bg-[#080B20] p-2 border border-[#202A4A] space-y-1">
+                  <p className="text-xs text-muted-foreground mb-2">{weak.description}</p>
+                  <div className="text-[11px] font-mono text-muted-foreground bg-background p-2 border border-border space-y-1">
                     <div>
-                      <span className="text-[#EF4444]">&gt; Evidence:</span> {weak.evidence}
+                      <span className="text-destructive">&gt; Evidence:</span> {weak.evidence}
                     </div>
                     <div>
-                      <span className="text-[#A3E635]">&gt; Recommended Fix:</span> {weak.recommendation}
+                      <span className="text-neon-green">&gt; Recommended Fix:</span> {weak.recommendation}
                     </div>
                   </div>
                 </div>
@@ -523,29 +523,29 @@ export default function AuditReportPage({
       </div>
 
       {/* SECTION E: REPOSITORY OVERVIEW */}
-      <div className="bg-[#111832] border-2 border-[#30395D] p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#202A4A]">
+      <div className="bg-card border-2 border-border p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-border">
           <div>
-            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-[#F8FAFC] mb-1">
+            <h3 className="font-['Press_Start_2P'] text-xs sm:text-sm text-foreground mb-1">
               REPOSITORY SCORECARDS ({filteredRepos.length})
             </h3>
-            <p className="text-xs font-mono text-[#707B9C]">
+            <p className="text-xs font-mono text-muted-foreground">
               Click any repository for a deep file tree and architectural inspection
             </p>
           </div>
 
           {/* Filters & Sorting */}
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-            <div className="flex items-center gap-1 bg-[#080B20] p-1 border border-[#30395D]">
-              <span className="text-[#707B9C] px-1">FILTER:</span>
+            <div className="flex items-center gap-1 bg-background p-1 border border-border">
+              <span className="text-muted-foreground px-1">FILTER:</span>
               {(["all", "best", "needs_work", "recent"] as const).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setRepoFilter(mode)}
                   className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
                     repoFilter === mode
-                      ? "bg-[#22D3EE] text-[#080B20] font-bold"
-                      : "text-[#A5AEC9] hover:text-[#F8FAFC]"
+                      ? "bg-neon-cyan text-black font-bold"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {mode.replace("_", " ")}
@@ -553,16 +553,16 @@ export default function AuditReportPage({
               ))}
             </div>
 
-            <div className="flex items-center gap-1 bg-[#080B20] p-1 border border-[#30395D]">
-              <span className="text-[#707B9C] px-1">SORT:</span>
+            <div className="flex items-center gap-1 bg-background p-1 border border-border">
+              <span className="text-muted-foreground px-1">SORT:</span>
               {(["score", "stars", "updated"] as const).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setRepoSort(mode)}
                   className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
                     repoSort === mode
-                      ? "bg-[#A855F7] text-white font-bold"
-                      : "text-[#A5AEC9] hover:text-[#F8FAFC]"
+                      ? "bg-primary text-white font-bold"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {mode}
@@ -580,38 +580,38 @@ export default function AuditReportPage({
               href={`/report/${encodeURIComponent(username)}/repository/${encodeURIComponent(repo.name)}`}
               className="group block"
             >
-              <div className="h-full bg-[#0D1228] border border-[#202A4A] p-4 group-hover:border-[#22D3EE] transition-all flex flex-col justify-between">
+              <div className="h-full bg-secondary border border-border p-4 group-hover:border-neon-cyan transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-mono font-bold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors truncate">
+                    <h4 className="text-sm font-mono font-bold text-foreground group-hover:text-neon-cyan transition-colors truncate">
                       {repo.name}
                     </h4>
                     <span
                       className={`text-xs font-mono font-bold px-1.5 py-0.5 border ${
                         repo.score >= 80
-                          ? "text-[#A3E635] border-[#A3E635]/40 bg-[#A3E635]/10"
+                          ? "text-neon-green border-neon-green/40 bg-neon-green/10"
                           : repo.score >= 60
-                          ? "text-[#FACC15] border-[#FACC15]/40 bg-[#FACC15]/10"
-                          : "text-[#EF4444] border-[#EF4444]/40 bg-[#EF4444]/10"
+                          ? "text-neon-yellow border-neon-yellow/40 bg-neon-yellow/10"
+                          : "text-destructive border-destructive/40 bg-destructive/10"
                       }`}
                     >
                       {repo.score}/100
                     </span>
                   </div>
 
-                  <p className="text-xs text-[#A5AEC9] line-clamp-2 mb-4">
+                  <p className="text-xs text-muted-foreground line-clamp-2 mb-4">
                     {repo.description || "No description provided."}
                   </p>
                 </div>
 
-                <div className="space-y-3 pt-3 border-t border-[#202A4A] text-[11px] font-mono text-[#707B9C]">
+                <div className="space-y-3 pt-3 border-t border-border text-[11px] font-mono text-muted-foreground">
                   {/* Indicators */}
                   <div className="flex flex-wrap items-center gap-2">
                     <span
                       className={`px-1.5 py-0.2 border ${
                         repo.hasReadme
-                          ? "text-[#A3E635] border-[#A3E635]/40"
-                          : "text-[#EF4444] border-[#EF4444]/40"
+                          ? "text-neon-green border-neon-green/40"
+                          : "text-destructive border-destructive/40"
                       }`}
                     >
                       README: {repo.hasReadme ? "YES" : "NO"}
@@ -619,14 +619,14 @@ export default function AuditReportPage({
                     <span
                       className={`px-1.5 py-0.2 border ${
                         repo.hasLicense
-                          ? "text-[#A3E635] border-[#A3E635]/40"
-                          : "text-[#707B9C] border-[#30395D]"
+                          ? "text-neon-green border-neon-green/40"
+                          : "text-muted-foreground border-border"
                       }`}
                     >
                       LIC: {repo.hasLicense ? "YES" : "NO"}
                     </span>
                     {repo.primaryLanguage && (
-                      <span className="text-[#22D3EE] px-1.5 py-0.2 bg-[#171F3D] border border-[#30395D]">
+                      <span className="text-neon-cyan px-1.5 py-0.2 bg-muted border border-border">
                         {repo.primaryLanguage}
                       </span>
                     )}
@@ -634,14 +634,14 @@ export default function AuditReportPage({
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 text-[#F8FAFC]">
-                        <Star className="w-3 h-3 text-[#FACC15]" /> {repo.stars}
+                      <span className="flex items-center gap-1 text-foreground">
+                        <Star className="w-3 h-3 text-neon-yellow" /> {repo.stars}
                       </span>
                       <span className="flex items-center gap-1">
                         <GitFork className="w-3 h-3" /> {repo.forks}
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#A855F7] group-hover:translate-x-1 transition-transform inline-flex items-center">
+                    <span className="text-[10px] text-primary group-hover:translate-x-1 transition-transform inline-flex items-center">
                       Inspect &gt;
                     </span>
                   </div>

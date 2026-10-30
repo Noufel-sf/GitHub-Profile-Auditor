@@ -33,7 +33,7 @@ export function AuditCharts({ report }: AuditChartsProps) {
 
   if (!mounted) {
     return (
-      <div className="w-full h-72 bg-[#111832] border-2 border-[#30395D] flex items-center justify-center font-mono text-xs text-[#707B9C]">
+      <div className="w-full h-72 bg-card border-2 border-border flex items-center justify-center font-mono text-xs text-muted-foreground">
         LOADING VISUAL METRICS...
       </div>
     );
@@ -94,19 +94,19 @@ export function AuditCharts({ report }: AuditChartsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* 5-CATEGORY RADAR SPIDER CHART */}
-      <div className="bg-[#111832] border-2 border-[#30395D] p-5 flex flex-col justify-between">
+      <div className="bg-card border-2 border-border p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <PieChart className="w-4 h-4 text-[#22D3EE]" />
-            <h3 className="font-['Press_Start_2P'] text-xs text-[#F8FAFC]">
+            <PieChart className="w-4 h-4 text-neon-cyan" />
+            <h3 className="font-['Press_Start_2P'] text-xs text-foreground">
               RADAR COMPETENCY MATRIX
             </h3>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 bg-[#22D3EE]/20 text-[#22D3EE] border border-[#22D3EE]/40">
+          <span className="text-[10px] font-mono px-2 py-0.5 bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/40">
             5 AXES
           </span>
         </div>
-        <p className="text-xs font-mono text-[#707B9C] mb-4">
+        <p className="text-xs font-mono text-muted-foreground mb-4">
           Visual profile balance across all 5 audited engineering dimensions.
         </p>
 
@@ -114,13 +114,13 @@ export function AuditCharts({ report }: AuditChartsProps) {
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
               <PolarGrid
-                stroke={isDark ? "#30395D" : "#CBD5E1"}
+                stroke={isDark ? "#27272a" : "#e4e4e7"}
                 strokeDasharray="3 3"
               />
               <PolarAngleAxis
                 dataKey="category"
                 tick={{
-                  fill: isDark ? "#A5AEC9" : "#475569",
+                  fill: isDark ? "#a1a1aa" : "#71717a",
                   fontSize: 11,
                   fontFamily: "monospace",
                 }}
@@ -128,8 +128,8 @@ export function AuditCharts({ report }: AuditChartsProps) {
               <PolarRadiusAxis
                 angle={30}
                 domain={[0, 100]}
-                stroke={isDark ? "#202A4A" : "#E2E8F0"}
-                tick={{ fill: "#707B9C", fontSize: 9 }}
+                stroke={isDark ? "#27272a" : "#e4e4e7"}
+                tick={{ fill: "#71717a", fontSize: 9 }}
               />
               <Radar
                 name="Score"
@@ -142,12 +142,12 @@ export function AuditCharts({ report }: AuditChartsProps) {
           </ResponsiveContainer>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-3 border-t border-[#202A4A] text-[11px] font-mono text-[#A5AEC9]">
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-3 border-t border-border text-[11px] font-mono text-muted-foreground">
           {radarData.map((d, i) => (
             <div key={i} className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-none bg-[#22D3EE]" />
+              <span className="w-2 h-2 rounded-none bg-neon-cyan" />
               <span>
-                {d.category}: <strong className="text-[#F8FAFC]">{d.score}</strong>
+                {d.category}: <strong className="text-foreground">{d.score}</strong>
               </span>
             </div>
           ))}
@@ -155,24 +155,24 @@ export function AuditCharts({ report }: AuditChartsProps) {
       </div>
 
       {/* PRIMARY LANGUAGES BAR CHART */}
-      <div className="bg-[#111832] border-2 border-[#30395D] p-5 flex flex-col justify-between">
+      <div className="bg-card border-2 border-border p-5 flex flex-col justify-between">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-[#A855F7]" />
-            <h3 className="font-['Press_Start_2P'] text-xs text-[#F8FAFC]">
+            <Layers className="w-4 h-4 text-primary" />
+            <h3 className="font-['Press_Start_2P'] text-xs text-foreground">
               STACK DISTRIBUTION
             </h3>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/40">
+          <span className="text-[10px] font-mono px-2 py-0.5 bg-primary/20 text-primary border border-primary/40">
             TOP STACKS
           </span>
         </div>
-        <p className="text-xs font-mono text-[#707B9C] mb-4">
+        <p className="text-xs font-mono text-muted-foreground mb-4">
           Frequency of primary technologies across public repositories.
         </p>
 
         {languageData.length === 0 ? (
-          <div className="h-64 flex items-center justify-center text-xs font-mono text-[#707B9C]">
+          <div className="h-64 flex items-center justify-center text-xs font-mono text-muted-foreground">
             No primary programming languages detected.
           </div>
         ) : (
@@ -184,9 +184,9 @@ export function AuditCharts({ report }: AuditChartsProps) {
               >
                 <XAxis
                   dataKey="name"
-                  stroke={isDark ? "#707B9C" : "#64748B"}
+                  stroke={isDark ? "#71717a" : "#a1a1aa"}
                   tick={{
-                    fill: isDark ? "#A5AEC9" : "#475569",
+                    fill: isDark ? "#a1a1aa" : "#71717a",
                     fontSize: 11,
                     fontFamily: "monospace",
                   }}
@@ -195,18 +195,18 @@ export function AuditCharts({ report }: AuditChartsProps) {
                   textAnchor="end"
                 />
                 <YAxis
-                  stroke={isDark ? "#707B9C" : "#64748B"}
-                  tick={{ fill: "#707B9C", fontSize: 10 }}
+                  stroke={isDark ? "#71717a" : "#a1a1aa"}
+                  tick={{ fill: "#71717a", fontSize: 10 }}
                   allowDecimals={false}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: isDark ? "#0D1228" : "#FFFFFF",
-                    borderColor: isDark ? "#30395D" : "#CBD5E1",
+                    backgroundColor: isDark ? "#121215" : "#ffffff",
+                    borderColor: isDark ? "#27272a" : "#e4e4e7",
                     borderRadius: "0px",
                     fontFamily: "monospace",
                     fontSize: "12px",
-                    color: isDark ? "#F8FAFC" : "#0F172A",
+                    color: isDark ? "#fafafa" : "#09090b",
                   }}
                   cursor={{ fill: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}
                 />
@@ -223,7 +223,7 @@ export function AuditCharts({ report }: AuditChartsProps) {
           </div>
         )}
 
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-3 border-t border-[#202A4A] text-[11px] font-mono text-[#A5AEC9]">
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-3 border-t border-border text-[11px] font-mono text-muted-foreground">
           {languageData.map((l, i) => (
             <div key={i} className="flex items-center gap-1.5">
               <span
@@ -231,7 +231,7 @@ export function AuditCharts({ report }: AuditChartsProps) {
                 style={{ backgroundColor: neonColors[i % neonColors.length] }}
               />
               <span>
-                {l.name}: <strong className="text-[#F8FAFC]">{l.count} repos</strong>
+                {l.name}: <strong className="text-foreground">{l.count} repos</strong>
               </span>
             </div>
           ))}

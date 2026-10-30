@@ -121,75 +121,75 @@ export default function LeaderboardPage() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Top Breadcrumb */}
-      <div className="flex items-center justify-between pb-4 border-b border-[#30395D]">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#707B9C]">
-          <Link href="/" className="hover:text-[#22D3EE] transition-colors">
+      <div className="flex items-center justify-between pb-4 border-b border-border">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+          <Link href="/" className="hover:text-neon-cyan transition-colors">
             HOME
           </Link>
           <span>/</span>
-          <span className="text-[#F8FAFC]">ARCADE HALL OF FAME</span>
+          <span className="text-foreground">ARCADE HALL OF FAME</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#FACC15] animate-ping" />
-          <span className="text-xs font-mono text-[#FACC15] font-bold">
+          <span className="w-2 h-2 rounded-full bg-neon-yellow animate-ping" />
+          <span className="text-xs font-mono text-neon-yellow font-bold">
             HIGH SCORES TABLE
           </span>
         </div>
       </div>
 
       {/* Hero Banner */}
-      <div className="bg-[#111832] border-2 border-[#30395D] p-6 sm:p-8 text-center relative overflow-hidden shadow-[0_0_30px_rgba(250,204,21,0.15)]">
-        <div className="absolute top-0 left-0 w-3 h-3 bg-[#22D3EE]" />
-        <div className="absolute top-0 right-0 w-3 h-3 bg-[#EC4899]" />
-        <div className="absolute bottom-0 left-0 w-3 h-3 bg-[#A3E635]" />
-        <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#FACC15]" />
+      <div className="bg-card border-2 border-border p-6 sm:p-8 text-center relative overflow-hidden shadow-[0_0_30px_rgba(250,204,21,0.1)]">
+        <div className="absolute top-0 left-0 w-3 h-3 bg-neon-cyan" />
+        <div className="absolute top-0 right-0 w-3 h-3 bg-neon-pink" />
+        <div className="absolute bottom-0 left-0 w-3 h-3 bg-neon-green" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 bg-neon-yellow" />
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 bg-[#080B20] border border-[#FACC15] text-[#FACC15] text-xs font-mono">
+        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 bg-background border border-neon-yellow text-neon-yellow text-xs font-mono">
           <Trophy className="w-3.5 h-3.5" />
           <span>GLOBAL HIGH SCORES</span>
         </div>
 
-        <h1 className="font-['Press_Start_2P'] text-xl sm:text-3xl md:text-4xl text-[#F8FAFC] tracking-tight mb-4 leading-relaxed">
+        <h1 className="font-['Press_Start_2P'] text-xl sm:text-3xl md:text-4xl text-foreground tracking-tight mb-4 leading-relaxed">
           HALL OF FAME
         </h1>
-        <p className="text-sm text-[#A5AEC9] max-w-2xl mx-auto font-sans leading-relaxed mb-6">
+        <p className="text-sm text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed mb-6">
           Benchmark your GitHub presence against industry legends. Every profile is evaluated by DevScope's 100% deterministic engineering engine.
         </p>
 
         <Link href="/#audit-form">
           <Button
             size="lg"
-            className="bg-[#A855F7] text-white hover:bg-[#9333ea] border-none font-['Press_Start_2P'] text-xs py-3 px-6 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+            className="bg-primary text-white hover:bg-primary/90 border-none font-['Press_Start_2P'] text-xs py-3 px-6 shadow-[0_0_20px_rgba(168,85,247,0.3)]"
           >
-            <Flame className="w-4 h-4 mr-1 text-[#FACC15]" />
+            <Flame className="w-4 h-4 mr-1 text-neon-yellow" />
             INSERT COIN // SUBMIT YOUR SCORE
           </Button>
         </Link>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-[#0D1228] border border-[#30395D] font-mono text-xs">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-secondary border border-border font-mono text-xs">
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-[#707B9C] absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-2.5" />
           <input
             type="text"
             placeholder="Search developer, name, or stack..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 bg-[#111832] border border-[#202A4A] text-[#F8FAFC] placeholder-[#707B9C] focus:outline-none focus:border-[#22D3EE]"
+            className="w-full pl-9 pr-3 py-2 bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon-cyan"
           />
         </div>
 
         <div className="flex items-center gap-2 w-full sm:w-auto">
-          <span className="text-[#707B9C]">TIER:</span>
+          <span className="text-muted-foreground">TIER:</span>
           {["all", "S", "A", "B"].map((g) => (
             <button
               key={g}
               onClick={() => setSelectedGrade(g)}
               className={`px-3 py-1 uppercase text-xs cursor-pointer border ${
                 selectedGrade === g
-                  ? "bg-[#22D3EE] text-[#080B20] border-[#22D3EE] font-bold"
-                  : "bg-[#111832] text-[#A5AEC9] border-[#202A4A] hover:text-[#F8FAFC]"
+                  ? "bg-neon-cyan text-black border-neon-cyan font-bold"
+                  : "bg-card text-muted-foreground border-border hover:text-foreground"
               }`}
             >
               {g === "all" ? "ALL TIERS" : `RANK ${g}`}
@@ -199,10 +199,10 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Leaderboard Table */}
-      <div className="bg-[#111832] border-2 border-[#30395D] overflow-x-auto">
+      <div className="bg-card border-2 border-border overflow-x-auto">
         <table className="w-full text-left font-mono text-xs">
           <thead>
-            <tr className="bg-[#080B20] text-[#707B9C] border-b border-[#202A4A]">
+            <tr className="bg-background text-muted-foreground border-b border-border">
               <th className="py-3 px-4 w-16">RANK</th>
               <th className="py-3 px-4">DEVELOPER</th>
               <th className="py-3 px-4">ARCHETYPE</th>
@@ -212,23 +212,23 @@ export default function LeaderboardPage() {
               <th className="py-3 px-4 text-right">ACTION</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#202A4A]">
+          <tbody className="divide-y divide-border">
             {filtered.map((entry) => (
               <tr
                 key={entry.username}
-                className="hover:bg-[#171F3D]/50 transition-colors"
+                className="hover:bg-muted/50 transition-colors"
               >
                 {/* Rank Badge */}
                 <td className="py-4 px-4">
                   <div className="flex items-center justify-center w-8 h-8 font-['Press_Start_2P'] text-xs">
                     {entry.rank === 1 ? (
-                      <span className="text-[#FACC15] text-sm">🥇 #1</span>
+                      <span className="text-neon-yellow text-sm">🥇 #1</span>
                     ) : entry.rank === 2 ? (
-                      <span className="text-[#CBD5E1] text-sm">🥈 #2</span>
+                      <span className="text-slate-300 text-sm">🥈 #2</span>
                     ) : entry.rank === 3 ? (
-                      <span className="text-[#D97706] text-sm">🥉 #3</span>
+                      <span className="text-amber-500 text-sm">🥉 #3</span>
                     ) : (
-                      <span className="text-[#707B9C]">#{entry.rank}</span>
+                      <span className="text-muted-foreground">#{entry.rank}</span>
                     )}
                   </div>
                 </td>
@@ -239,13 +239,13 @@ export default function LeaderboardPage() {
                     <img
                       src={entry.avatarUrl}
                       alt={entry.name}
-                      className="w-10 h-10 border border-[#30395D] object-cover"
+                      className="w-10 h-10 border border-border object-cover"
                     />
                     <div>
-                      <div className="font-bold text-[#F8FAFC] flex items-center gap-1.5">
+                      <div className="font-bold text-foreground flex items-center gap-1.5">
                         {entry.name}
                       </div>
-                      <span className="text-[#22D3EE] text-[11px]">
+                      <span className="text-neon-cyan text-[11px]">
                         @{entry.username}
                       </span>
                     </div>
@@ -253,29 +253,29 @@ export default function LeaderboardPage() {
                 </td>
 
                 {/* Archetype */}
-                <td className="py-4 px-4 text-[#A5AEC9]">
+                <td className="py-4 px-4 text-muted-foreground">
                   {entry.archetype}
                 </td>
 
                 {/* Primary Stack */}
                 <td className="py-4 px-4">
-                  <span className="px-2 py-0.5 bg-[#080B20] text-[#A855F7] border border-[#202A4A] text-[11px]">
+                  <span className="px-2 py-0.5 bg-background text-primary border border-border text-[11px]">
                     {entry.topLanguage}
                   </span>
                 </td>
 
                 {/* Repos Count */}
-                <td className="py-4 px-4 text-[#A5AEC9]">
+                <td className="py-4 px-4 text-muted-foreground">
                   {entry.publicRepos} Repos
                 </td>
 
                 {/* Score */}
                 <td className="py-4 px-4">
                   <div className="flex items-center gap-2">
-                    <span className="font-['Space_Grotesk'] text-xl font-bold text-[#F8FAFC]">
+                    <span className="font-['Space_Grotesk'] text-xl font-bold text-foreground">
                       {entry.score}
                     </span>
-                    <span className="px-1.5 py-0.2 bg-[#A3E635]/20 text-[#A3E635] border border-[#A3E635]/40 text-[10px] font-bold">
+                    <span className="px-1.5 py-0.2 bg-neon-green/20 text-neon-green border border-neon-green/40 text-[10px] font-bold">
                       RANK {entry.grade}
                     </span>
                   </div>
@@ -286,7 +286,7 @@ export default function LeaderboardPage() {
                   <Link href={`/report/${encodeURIComponent(entry.username)}`}>
                     <Button
                       size="sm"
-                      className="bg-[#111832] border border-[#30395D] hover:border-[#22D3EE] text-[#22D3EE] text-[11px]"
+                      className="bg-card border border-border hover:border-neon-cyan text-neon-cyan text-[11px]"
                     >
                       View Audit &gt;
                     </Button>

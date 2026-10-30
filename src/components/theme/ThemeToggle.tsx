@@ -15,7 +15,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-8 h-8 bg-[#111832] border border-[#30395D] opacity-50" />
+      <div className="w-8 h-8 bg-card border border-border opacity-50" />
     );
   }
 
@@ -30,17 +30,17 @@ export function ThemeToggle() {
     <button
       onClick={handleToggle}
       title={isDark ? "Switch to White / Light Mode" : "Switch to Night / Dark Mode"}
-      className="p-2 bg-[#111832] border border-[#30395D] hover:border-[#22D3EE] text-[#F8FAFC] transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer"
+      className="p-2 bg-card border border-border hover:border-neon-cyan text-foreground transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer"
     >
       {isDark ? (
         <>
-          <Sun className="w-3.5 h-3.5 text-[#FACC15]" />
-          <span className="hidden sm:inline text-[10px] text-[#A5AEC9]">LIGHT</span>
+          <Sun className="w-3.5 h-3.5 text-neon-yellow" />
+          <span className="hidden sm:inline text-[10px] text-muted-foreground">LIGHT</span>
         </>
       ) : (
         <>
-          <Moon className="w-3.5 h-3.5 text-[#A855F7]" />
-          <span className="hidden sm:inline text-[10px] text-[#475569]">DARK</span>
+          <Moon className="w-3.5 h-3.5 text-primary" />
+          <span className="hidden sm:inline text-[10px] text-muted-foreground">DARK</span>
         </>
       )}
     </button>
