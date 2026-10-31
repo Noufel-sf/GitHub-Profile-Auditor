@@ -27,9 +27,56 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://devscope.app"),
   title: "DEV SCOPE — GitHub Auditor & Engineering Review",
   description:
     "AI-powered GitHub profile & repository auditor. Discover what's holding your profile back, level up your developer presence, and unlock actionable engineering roadmaps.",
+  keywords: [
+    "GitHub Auditor",
+    "Developer Portfolio",
+    "Code Quality",
+    "GitHub Score",
+    "Developer Resume",
+    "DevScope",
+    "Repository Audit",
+    "Software Engineer Portfolio",
+  ],
+  authors: [{ name: "DevScope" }],
+  openGraph: {
+    title: "DEV SCOPE — GitHub Profile & Repo Auditor",
+    description:
+      "Deterministic GitHub engineering presence auditor. Discover category insights, code hygiene scores, and gamified RPG quest roadmaps.",
+    url: "https://devscope.app",
+    siteName: "DEV SCOPE",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DEV SCOPE — GitHub Profile & Repository Auditor",
+        type: "image/png",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DEV SCOPE — GitHub Profile & Repo Auditor",
+    description:
+      "Deterministic GitHub engineering presence auditor. Discover category insights, code hygiene scores, and gamified RPG quest roadmaps.",
+    images: ["/og-image.png"],
+    creator: "@devscope",
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

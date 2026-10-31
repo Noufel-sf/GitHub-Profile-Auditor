@@ -121,16 +121,6 @@ export function Navbar() {
               )}
             </button>
 
-            <Link href="/audit/torvalds">
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-card text-neon-cyan border-border hover:bg-muted text-[11px]"
-              >
-                Demo Audit
-              </Button>
-            </Link>
-
             <Link href="/#audit-form">
               <Button
                 size="sm"
