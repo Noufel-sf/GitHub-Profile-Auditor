@@ -4,19 +4,10 @@ import Link from "next/link";
 import {
   Terminal,
   ExternalLink,
-  Sparkles,
   Trophy,
-  ShieldCheck,
-  Code2,
-  FolderGit2,
-  Layers,
   Zap,
-  ArrowRight,
-  Flame,
-  Globe,
-  MapPin,
-  Calendar,
 } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/8bit/button";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/icons";
 import { arcadeAudio } from "@/lib/sound/audio";
@@ -91,9 +82,13 @@ export default function AboutPage() {
           {/* Avatar Column */}
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-5 group">
-              <img
+              <Image
                 src="https://avatars.githubusercontent.com/u/202407807?v=4"
                 alt="Noufel seif el islam Nasri"
+                width={160}
+                height={160}
+                priority
+                unoptimized
                 className="w-32 h-32 sm:w-40 sm:h-40 border-4 border-neon-cyan object-cover shadow-[0_0_25px_rgba(34,211,238,0.35)] transition-transform group-hover:scale-105"
               />
               <div className="absolute -bottom-2 right-2 px-2.5 py-0.5 bg-neon-cyan text-black font-['Press_Start_2P'] text-[9px] font-bold shadow-md">
@@ -152,7 +147,7 @@ export default function AboutPage() {
             </div>
 
             {/* Direct Audit CTA - Fully Responsive with No Overflows */}
-            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="pt-3  flex flex-col sm:flex-row items-stretch sm:items-center gap-5">
               <Link href="/report/Noufel-sf" className="w-full sm:w-auto">
                 <Button
                   onClick={() => arcadeAudio.playClick()}
