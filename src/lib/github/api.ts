@@ -168,6 +168,46 @@ export class GitHubService {
       return false;
     }
   }
+
+  /**
+   * Fetch full repository metadata (description, topics, homepage, stars, default_branch, etc.)
+   */
+  async getRepositoryDetails(owner: string, repo: string): Promise<any | null> {
+    const cacheKey = `repo_details:${owner}:${repo}`;
+    const cached = getCached<any>(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const response = await this.client.get(
+        `/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`
+      );
+      setCached(cacheKey, response.data);
+      return response.data;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Fetch recent repository commits for commit quality & hygiene analysis
+   */
+  async getRepositoryCommits(owner: string, repo: string, perPage: number = 25): Promise<any[]> {
+    const cacheKey = `commits:${owner}:${repo}:${perPage}`;
+    const cached = getCached<any[]>(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const response = await this.client.get(
+        `/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/commits`,
+        { params: { per_page: perPage } }
+      );
+      const data = Array.isArray(response.data) ? response.data : [];
+      setCached(cacheKey, data);
+      return data;
+    } catch {
+      return [];
+    }
+  }
 }
 
 export const gitHubService = new GitHubService();
