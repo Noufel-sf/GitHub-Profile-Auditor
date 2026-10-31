@@ -23,6 +23,7 @@ import {
   Filter,
   CheckCircle2,
   TrendingUp,
+  TrendingDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/8bit/button";
 import { Badge } from "@/components/ui/8bit/badge";
@@ -33,6 +34,13 @@ import { GithubIcon } from "@/components/ui/icons";
 import { AuditCharts } from "@/components/dashboard/AuditRadarChart";
 import { ShareModal } from "@/components/dashboard/ShareModal";
 import { AiGeneratorModal } from "@/components/dashboard/AiGeneratorModal";
+import { AuditHistorySection } from "@/components/dashboard/AuditHistorySection";
+import { arcadeAudio } from "@/lib/sound/audio";
+import {
+  saveAuditToHistory,
+  togglePinAudit,
+  getPreviousAuditRecord,
+} from "@/lib/storage/auditHistory";
 import { Share2 } from "lucide-react";
 
 export default function AuditReportPage({
@@ -49,6 +57,8 @@ export default function AuditReportPage({
   const [error, setError] = useState<string | null>(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+  const [scoreDiff, setScoreDiff] = useState<number | null>(null);
 
   // Repo filter & sort states
   const [repoFilter, setRepoFilter] = useState<"all" | "best" | "needs_work" | "recent">("all");
@@ -57,12 +67,21 @@ export default function AuditReportPage({
   useEffect(() => {
     // Check if session data already has cached audit
     if (typeof window !== "undefined") {
+      const existing = getPreviousAuditRecord(username);
+      if (existing) {
+        setIsPinned(!!existing.isPinned);
+        if (existing.scoreDiff !== undefined) {
+          setScoreDiff(existing.scoreDiff);
+        }
+      }
+
       const cached = sessionStorage.getItem(`audit_${username.toLowerCase()}`);
       if (cached) {
         try {
           const parsed = JSON.parse(cached);
           setReport(parsed);
           setLoading(false);
+          saveAuditToHistory(parsed);
           return;
         } catch {
           // fallback to fetch
@@ -83,6 +102,11 @@ export default function AuditReportPage({
         setReport(data);
         if (typeof window !== "undefined") {
           sessionStorage.setItem(`audit_${username.toLowerCase()}`, JSON.stringify(data));
+          saveAuditToHistory(data);
+          const rec = getPreviousAuditRecord(username);
+          if (rec && rec.scoreDiff !== undefined) {
+            setScoreDiff(rec.scoreDiff);
+          }
         }
       } catch (e: any) {
         setError(e.message || "Failed to load audit");
@@ -93,6 +117,13 @@ export default function AuditReportPage({
 
     fetchReport();
   }, [username]);
+
+  const handleTogglePin = () => {
+    arcadeAudio.playClick();
+    const updated = togglePinAudit(username);
+    const current = updated.find((u) => u.username.toLowerCase() === username.toLowerCase());
+    setIsPinned(!!current?.isPinned);
+  };
 
   if (loading) {
     return (
@@ -172,6 +203,20 @@ export default function AuditReportPage({
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
+          <Button
+            onClick={handleTogglePin}
+            size="sm"
+            variant="outline"
+            className={`border-border text-xs font-mono font-bold transition-all ${
+              isPinned
+                ? "bg-neon-yellow/20 text-neon-yellow border-neon-yellow/50"
+                : "bg-card text-muted-foreground hover:text-neon-yellow hover:border-neon-yellow/40"
+            }`}
+          >
+            <Star className={`w-3.5 h-3.5 mr-1 ${isPinned ? "fill-neon-yellow" : ""}`} />
+            {isPinned ? "PINNED TO SQUAD" : "PIN PROFILE"}
+          </Button>
+
           <Button
             onClick={() => setIsShareOpen(true)}
             size="sm"
@@ -313,6 +358,19 @@ export default function AuditReportPage({
             <p className="font-['Press_Start_2P'] text-[11px] text-neon-cyan mt-3 tracking-wider">
               {report.gradeLabel}
             </p>
+            {scoreDiff !== null && scoreDiff !== 0 && (
+              <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-bold bg-background border border-border">
+                {scoreDiff > 0 ? (
+                  <span className="text-neon-green flex items-center gap-1">
+                    <TrendingUp className="w-3.5 h-3.5" /> +{scoreDiff} PTS SINCE LAST AUDIT
+                  </span>
+                ) : (
+                  <span className="text-destructive flex items-center gap-1">
+                    <TrendingDown className="w-3.5 h-3.5" /> {scoreDiff} PTS SINCE LAST AUDIT
+                  </span>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="space-y-2 pt-4 border-t border-border text-xs font-mono">
@@ -651,6 +709,9 @@ export default function AuditReportPage({
           ))}
         </div>
       </div>
+
+      {/* SECTION F: AUDIT HISTORY & SQUAD TRACKER */}
+      <AuditHistorySection currentUsername={username} />
 
       {/* SHARE & EMBED BADGE MODAL */}
       <ShareModal

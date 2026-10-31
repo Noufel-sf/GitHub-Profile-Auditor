@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/8bit/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/8bit/card";
 import { Badge } from "@/components/ui/8bit/badge";
 import { GithubIcon } from "@/components/ui/icons";
+import { AuditHistorySection } from "@/components/dashboard/AuditHistorySection";
 
 export default function HomePage() {
   const router = useRouter();
@@ -145,6 +146,11 @@ export default function HomePage() {
             <span className="text-[10px] font-mono text-muted-foreground block">ACTIONABLE ROADMAP</span>
             <span className="font-['Press_Start_2P'] text-sm text-neon-yellow mt-1 block">RPG QUESTS</span>
           </div>
+        </div>
+
+        {/* Audit History & Pinned Squad (shown if history exists) */}
+        <div className="w-full max-w-5xl mt-12">
+          <AuditHistorySection />
         </div>
       </section>
 

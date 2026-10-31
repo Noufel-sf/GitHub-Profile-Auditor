@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/8bit/button";
 import { Progress } from "@/components/ui/8bit/progress";
 import { OverallAuditReport } from "@/types/audit";
+import { saveAuditToHistory } from "@/lib/storage/auditHistory";
 
 const AUDIT_STAGES = [
   { id: 1, name: "Connecting to GitHub API & Profile", delay: 800 },
@@ -109,9 +110,10 @@ export default function AuditExperiencePage({
         addLog("STATUS: Audit complete! Report ready for viewing.");
         setIsComplete(true);
 
-        // Store data in sessionStorage for instant retrieval on report page
+        // Store data in sessionStorage for instant retrieval on report page & record in persistent audit history
         if (typeof window !== "undefined") {
           sessionStorage.setItem(`audit_${username.toLowerCase()}`, JSON.stringify(data));
+          saveAuditToHistory(data);
         }
 
         // Auto-navigate after short confirmation
