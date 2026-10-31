@@ -63,6 +63,7 @@ export default function AuditReportPage({
   // Repo filter & sort states
   const [repoFilter, setRepoFilter] = useState<"all" | "best" | "needs_work" | "recent">("all");
   const [repoSort, setRepoSort] = useState<"score" | "stars" | "updated">("score");
+  const [visibleRepoCount, setVisibleRepoCount] = useState(15);
 
   useEffect(() => {
     // Check if session data already has cached audit
@@ -174,6 +175,14 @@ export default function AuditReportPage({
       if (repoSort === "updated") return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
       return b.score - a.score;
     });
+
+  const visibleRepos = filteredRepos.slice(0, visibleRepoCount);
+  const hasMoreRepos = filteredRepos.length > visibleRepoCount;
+
+  const handleLoadMore = () => {
+    arcadeAudio.playClick();
+    setVisibleRepoCount((prev) => prev + 15);
+  };
 
   const getSeverityBadge = (severity: FindingSeverity) => {
     switch (severity) {
@@ -599,7 +608,11 @@ export default function AuditReportPage({
               {(["all", "best", "needs_work", "recent"] as const).map((mode) => (
                 <button
                   key={mode}
-                  onClick={() => setRepoFilter(mode)}
+                  onClick={() => {
+                    arcadeAudio.playClick();
+                    setRepoFilter(mode);
+                    setVisibleRepoCount(15);
+                  }}
                   className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
                     repoFilter === mode
                       ? "bg-neon-cyan text-black font-bold"
@@ -616,7 +629,11 @@ export default function AuditReportPage({
               {(["score", "stars", "updated"] as const).map((mode) => (
                 <button
                   key={mode}
-                  onClick={() => setRepoSort(mode)}
+                  onClick={() => {
+                    arcadeAudio.playClick();
+                    setRepoSort(mode);
+                    setVisibleRepoCount(15);
+                  }}
                   className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
                     repoSort === mode
                       ? "bg-primary text-white font-bold"
@@ -632,7 +649,7 @@ export default function AuditReportPage({
 
         {/* Repository Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredRepos.map((repo) => (
+          {visibleRepos.map((repo) => (
             <Link
               key={repo.name}
               href={`/report/${encodeURIComponent(username)}/repository/${encodeURIComponent(repo.name)}`}
@@ -708,6 +725,28 @@ export default function AuditReportPage({
             </Link>
           ))}
         </div>
+
+        {/* Pagination / Load More Controls */}
+        {hasMoreRepos ? (
+          <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-xs font-mono text-muted-foreground">
+              SHOWING <strong className="text-foreground">{visibleRepos.length}</strong> OF{" "}
+              <strong className="text-neon-cyan">{filteredRepos.length}</strong> REPOSITORIES
+            </span>
+            <Button
+              onClick={handleLoadMore}
+              className="bg-primary text-white hover:bg-primary/90 font-['Press_Start_2P'] text-[11px] py-3 px-6 shadow-[0_0_15px_rgba(168,85,247,0.35)] cursor-pointer"
+            >
+              LOAD MORE REPOSITORIES (+15)
+            </Button>
+          </div>
+        ) : filteredRepos.length > 15 ? (
+          <div className="mt-8 pt-6 border-t border-border text-center font-mono text-xs text-muted-foreground">
+            <span className="inline-block px-3 py-1 bg-secondary border border-border text-neon-green">
+              ✓ ALL {filteredRepos.length} REPOSITORIES LOADED
+            </span>
+          </div>
+        ) : null}
       </div>
 
       {/* SECTION F: AUDIT HISTORY & SQUAD TRACKER */}

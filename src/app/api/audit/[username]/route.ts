@@ -21,8 +21,8 @@ export async function GET(
     // 1. Fetch Profile
     const profile = await gitHubService.getUserProfile(cleanUsername);
 
-    // 2. Fetch Repositories
-    const repositories = await gitHubService.getUserRepositories(cleanUsername, 30);
+    // 2. Fetch Repositories (up to 50)
+    const repositories = await gitHubService.getUserRepositories(cleanUsername, 50);
 
     // 3. Concurrently fetch READMEs and Workflows for top 10 repos
     const topRepos = repositories.slice(0, 10);
