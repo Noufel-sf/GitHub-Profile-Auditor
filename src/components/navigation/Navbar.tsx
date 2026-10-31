@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Terminal, Volume2, VolumeX, Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
+import { Terminal, Volume2, VolumeX, Menu, X, Sun, Moon, ArrowRight, Search } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/8bit/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -125,6 +125,20 @@ export function Navbar() {
 
           {/* Desktop Controls & Action Buttons */}
           <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            <button
+              onClick={() => {
+                arcadeAudio.playClick();
+                window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true }));
+              }}
+              title="Quick Command Palette (Ctrl+K)"
+              className="p-2 bg-card border border-border hover:border-neon-cyan text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer shrink-0"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <kbd className="hidden lg:inline text-[9px] px-1 py-0.2 bg-secondary border border-border font-bold">
+                ⌘K
+              </kbd>
+            </button>
+
             <ThemeToggle />
 
             <button

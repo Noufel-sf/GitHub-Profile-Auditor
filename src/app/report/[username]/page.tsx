@@ -24,6 +24,7 @@ import {
   CheckCircle2,
   TrendingUp,
   TrendingDown,
+  Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/8bit/button";
 import { Badge } from "@/components/ui/8bit/badge";
@@ -63,6 +64,7 @@ export default function AuditReportPage({
   // Repo filter & sort states
   const [repoFilter, setRepoFilter] = useState<"all" | "best" | "needs_work" | "recent">("all");
   const [repoSort, setRepoSort] = useState<"score" | "stars" | "updated">("score");
+  const [repoSearch, setRepoSearch] = useState("");
   const [visibleRepoCount, setVisibleRepoCount] = useState(15);
 
   useEffect(() => {
@@ -162,6 +164,15 @@ export default function AuditReportPage({
   // Filter and sort repos
   const filteredRepos = report.repositories
     .filter((repo) => {
+      // Live search filter (name, description, primary language)
+      if (repoSearch.trim()) {
+        const query = repoSearch.toLowerCase().trim();
+        const matchesName = repo.name.toLowerCase().includes(query);
+        const matchesDesc = (repo.description || "").toLowerCase().includes(query);
+        const matchesLang = (repo.primaryLanguage || "").toLowerCase().includes(query);
+        if (!matchesName && !matchesDesc && !matchesLang) return false;
+      }
+
       if (repoFilter === "best") return repo.score >= 70;
       if (repoFilter === "needs_work") return repo.score < 70;
       if (repoFilter === "recent") {
@@ -601,8 +612,36 @@ export default function AuditReportPage({
             </p>
           </div>
 
-          {/* Filters & Sorting */}
+          {/* Search, Filters & Sorting */}
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
+            {/* Live Search Input */}
+            <div className="relative min-w-[180px] sm:w-56">
+              <Search className="w-3.5 h-3.5 text-muted-foreground absolute left-2.5 top-2 shrink-0 pointer-events-none" />
+              <input
+                type="text"
+                placeholder="Search repo or stack..."
+                value={repoSearch}
+                onChange={(e) => {
+                  setRepoSearch(e.target.value);
+                  setVisibleRepoCount(15);
+                }}
+                className="w-full pl-8 pr-7 py-1 bg-background border border-border text-foreground text-xs placeholder:text-muted-foreground/60 focus:outline-none focus:border-neon-cyan transition-colors"
+              />
+              {repoSearch && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRepoSearch("");
+                    setVisibleRepoCount(15);
+                  }}
+                  className="absolute right-2 top-1.5 text-muted-foreground hover:text-foreground text-xs cursor-pointer"
+                  title="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
             <div className="flex items-center gap-1 bg-background p-1 border border-border">
               <span className="text-muted-foreground px-1 text-[10px]">FILTER:</span>
               {(["all", "best", "needs_work", "recent"] as const).map((mode) => (
@@ -647,84 +686,102 @@ export default function AuditReportPage({
           </div>
         </div>
 
-        {/* Repository Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visibleRepos.map((repo) => (
-            <Link
-              key={repo.name}
-              href={`/report/${encodeURIComponent(username)}/repository/${encodeURIComponent(repo.name)}`}
-              className="group block"
+        {/* Empty Search State or Grid */}
+        {filteredRepos.length === 0 ? (
+          <div className="p-8 text-center bg-secondary border border-border font-mono text-xs text-muted-foreground space-y-2">
+            <p>
+              No repositories found matching <span className="text-foreground font-bold">"{repoSearch}"</span>.
+            </p>
+            <button
+              onClick={() => {
+                arcadeAudio.playClick();
+                setRepoSearch("");
+                setRepoFilter("all");
+              }}
+              className="text-neon-cyan hover:underline cursor-pointer font-bold"
             >
-              <div className="h-full bg-secondary border border-border p-4 group-hover:border-neon-cyan transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-mono font-bold text-foreground group-hover:text-neon-cyan transition-colors truncate">
-                      {repo.name}
-                    </h4>
-                    <span
-                      className={`text-xs font-mono font-bold px-1.5 py-0.5 border ${
-                        repo.score >= 80
-                          ? "text-neon-green border-neon-green/40 bg-neon-green/10"
-                          : repo.score >= 60
-                          ? "text-neon-yellow border-neon-yellow/40 bg-neon-yellow/10"
-                          : "text-destructive border-destructive/40 bg-destructive/10"
-                      }`}
-                    >
-                      {repo.score}/100
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-muted-foreground line-clamp-2 mb-4">
-                    {repo.description || "No description provided."}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-3 border-t border-border text-[11px] font-mono text-muted-foreground">
-                  {/* Indicators */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span
-                      className={`px-1.5 py-0.2 border ${
-                        repo.hasReadme
-                          ? "text-neon-green border-neon-green/40"
-                          : "text-destructive border-destructive/40"
-                      }`}
-                    >
-                      README: {repo.hasReadme ? "YES" : "NO"}
-                    </span>
-                    <span
-                      className={`px-1.5 py-0.2 border ${
-                        repo.hasLicense
-                          ? "text-neon-green border-neon-green/40"
-                          : "text-muted-foreground border-border"
-                      }`}
-                    >
-                      LIC: {repo.hasLicense ? "YES" : "NO"}
-                    </span>
-                    {repo.primaryLanguage && (
-                      <span className="text-neon-cyan px-1.5 py-0.2 bg-muted border border-border">
-                        {repo.primaryLanguage}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1 text-foreground">
-                        <Star className="w-3 h-3 text-neon-yellow" /> {repo.stars}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <GitFork className="w-3 h-3" /> {repo.forks}
+              &gt; Clear search &amp; reset filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visibleRepos.map((repo) => (
+              <Link
+                key={repo.name}
+                href={`/report/${encodeURIComponent(username)}/repository/${encodeURIComponent(repo.name)}`}
+                className="group block"
+              >
+                <div className="h-full bg-secondary border border-border p-4 group-hover:border-neon-cyan transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-sm font-mono font-bold text-foreground group-hover:text-neon-cyan transition-colors truncate">
+                        {repo.name}
+                      </h4>
+                      <span
+                        className={`text-xs font-mono font-bold px-1.5 py-0.5 border ${
+                          repo.score >= 80
+                            ? "text-neon-green border-neon-green/40 bg-neon-green/10"
+                            : repo.score >= 60
+                            ? "text-neon-yellow border-neon-yellow/40 bg-neon-yellow/10"
+                            : "text-destructive border-destructive/40 bg-destructive/10"
+                        }`}
+                      >
+                        {repo.score}/100
                       </span>
                     </div>
-                    <span className="text-[10px] text-primary group-hover:translate-x-1 transition-transform inline-flex items-center">
-                      Inspect &gt;
-                    </span>
+
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-4">
+                      {repo.description || "No description provided."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-3 border-t border-border text-[11px] font-mono text-muted-foreground">
+                    {/* Indicators */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`px-1.5 py-0.2 border ${
+                          repo.hasReadme
+                            ? "text-neon-green border-neon-green/40"
+                            : "text-destructive border-destructive/40"
+                        }`}
+                      >
+                        README: {repo.hasReadme ? "YES" : "NO"}
+                      </span>
+                      <span
+                        className={`px-1.5 py-0.2 border ${
+                          repo.hasLicense
+                            ? "text-neon-green border-neon-green/40"
+                            : "text-muted-foreground border-border"
+                        }`}
+                      >
+                        LIC: {repo.hasLicense ? "YES" : "NO"}
+                      </span>
+                      {repo.primaryLanguage && (
+                        <span className="text-neon-cyan px-1.5 py-0.2 bg-muted border border-border">
+                          {repo.primaryLanguage}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1 text-foreground">
+                          <Star className="w-3 h-3 text-neon-yellow" /> {repo.stars}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <GitFork className="w-3 h-3" /> {repo.forks}
+                        </span>
+                      </div>
+                      <span className="text-[10px] text-primary group-hover:translate-x-1 transition-transform inline-flex items-center">
+                        Inspect &gt;
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
 
         {/* Pagination / Load More Controls */}
         {hasMoreRepos ? (

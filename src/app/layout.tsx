@@ -3,6 +3,8 @@ import { Press_Start_2P, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
+import { ScrollToTop } from "@/components/navigation/ScrollToTop";
+import { CommandPalette } from "@/components/navigation/CommandPalette";
 import { ArcadeCursor } from "@/components/effects/ArcadeCursor";
 import { SoundEffectsProvider } from "@/components/effects/SoundEffectsProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
@@ -103,6 +105,8 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1 flex flex-col relative z-10">{children}</main>
             <Footer />
+            <ScrollToTop />
+            <CommandPalette />
           </SoundEffectsProvider>
         </ThemeProvider>
       </body>
