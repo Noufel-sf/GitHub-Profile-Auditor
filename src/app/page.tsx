@@ -25,6 +25,7 @@ import { Badge } from "@/components/ui/8bit/badge";
 import { GithubIcon } from "@/components/ui/icons";
 import { AuditHistorySection } from "@/components/dashboard/AuditHistorySection";
 import { FeaturesDirectorySection } from "@/components/landing/FeaturesDirectorySection";
+import { PublicAuditsShowcase } from "@/components/landing/PublicAuditsShowcase";
 import { RecruiterComparisonSection } from "@/components/landing/RecruiterComparisonSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 
@@ -112,20 +113,30 @@ export default function HomePage() {
 
           {/* Quick Demo Selectors */}
           <div className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-border/60 text-xs font-mono text-muted-foreground">
-            <span className="text-foreground/80 font-bold">QUICK AUDIT DEMOS:</span>
+            <span className="text-foreground/80 font-bold">5 PUBLIC AUDIT SAMPLES:</span>
             {[
+              { name: "Noufel-sf", label: "Noufel-sf (Creator)", isCreator: true },
               { name: "torvalds", label: "Linus Torvalds" },
               { name: "shadcn", label: "shadcn" },
               { name: "leerob", label: "Lee Robinson" },
-              { name: "gaearon", label: "Dan Abramov" },
+              { name: "antfu", label: "Anthony Fu" },
             ].map((user) => (
               <button
                 key={user.name}
                 type="button"
                 onClick={() => handleQuickSelect(user.name)}
-                className="px-2.5 py-1 bg-secondary hover:bg-muted text-neon-cyan hover:text-foreground border border-border text-[11px] transition-colors cursor-pointer"
+                className={`px-2.5 py-1 text-[11px] transition-all cursor-pointer border flex items-center gap-1.5 ${
+                  user.isCreator
+                    ? "bg-neon-cyan/20 text-neon-cyan border-neon-cyan/60 font-bold hover:bg-neon-cyan/30 shadow-[0_0_10px_rgba(34,211,238,0.2)]"
+                    : "bg-secondary hover:bg-muted text-foreground border-border hover:border-primary hover:text-neon-cyan"
+                }`}
               >
-                @{user.name}
+                <span>@{user.name}</span>
+                {user.isCreator && (
+                  <span className="px-1 py-0.2 bg-neon-cyan text-black text-[9px] font-bold">
+                    CREATOR
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -156,6 +167,9 @@ export default function HomePage() {
           <AuditHistorySection />
         </div>
       </section>
+
+      {/* 5 PUBLIC AUDIT SHOWCASE */}
+      <PublicAuditsShowcase />
 
       {/* ARCADE FEATURE DIRECTORY & NAVIGATOR */}
       <FeaturesDirectorySection />

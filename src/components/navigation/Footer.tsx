@@ -69,6 +69,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-[11px]">
               <li>
+                <Link href="/report/Noufel-sf" className="hover:text-neon-cyan transition-colors text-foreground font-bold">
+                  &gt; Creator Audit: @Noufel-sf
+                </Link>
+              </li>
+              <li>
                 <Link href="/audit/torvalds" className="hover:text-foreground transition-colors">
                   &gt; Live Audit: @torvalds
                 </Link>

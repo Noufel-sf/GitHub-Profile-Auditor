@@ -32,6 +32,18 @@ interface LeaderboardEntry {
 const HALL_OF_FAME: LeaderboardEntry[] = [
   {
     rank: 1,
+    username: "Noufel-sf",
+    name: "Noufel seif el islam",
+    avatarUrl: "https://avatars.githubusercontent.com/u/202407807?v=4",
+    score: 95,
+    grade: "S",
+    archetype: "DevScope Creator & Architect",
+    topLanguage: "TypeScript",
+    publicRepos: 40,
+    followers: 166,
+  },
+  {
+    rank: 2,
     username: "torvalds",
     name: "Linus Torvalds",
     avatarUrl: "https://avatars.githubusercontent.com/u/1024025?v=4",
@@ -43,7 +55,7 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 242000,
   },
   {
-    rank: 2,
+    rank: 3,
     username: "sindresorhus",
     name: "Sindre Sorhus",
     avatarUrl: "https://avatars.githubusercontent.com/u/170270?v=4",
@@ -55,7 +67,7 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 66000,
   },
   {
-    rank: 3,
+    rank: 4,
     username: "shadcn",
     name: "shadcn",
     avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
@@ -67,7 +79,7 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 81000,
   },
   {
-    rank: 4,
+    rank: 5,
     username: "antfu",
     name: "Anthony Fu",
     avatarUrl: "https://avatars.githubusercontent.com/u/11247099?v=4",
@@ -79,7 +91,7 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 47000,
   },
   {
-    rank: 5,
+    rank: 6,
     username: "leerob",
     name: "Lee Robinson",
     avatarUrl: "https://avatars.githubusercontent.com/u/9113740?v=4",
@@ -91,7 +103,7 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 38000,
   },
   {
-    rank: 6,
+    rank: 7,
     username: "gaearon",
     name: "Dan Abramov",
     avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
