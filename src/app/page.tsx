@@ -57,8 +57,8 @@ export default function HomePage() {
     <div className="flex flex-col items-center justify-center w-full">
       {/* HERO SECTION */}
       <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 flex flex-col items-center text-center overflow-hidden">
-        {/* Floating Arcade SVG Doodles */}
-        <ArcadeFloatingDecorations />
+        {/* Floating Arcade SVG Doodles (Desktop/PC only, hidden on mobile) */}
+        <ArcadeFloatingDecorations className="hidden md:block" />
 
         {/* Retro Header Pill */}
         <div className="relative z-10 inline-flex items-center gap-2 px-3 py-1 mb-8 bg-card border border-neon-cyan text-neon-cyan text-xs font-mono tracking-widest shadow-[0_0_12px_rgba(34,211,238,0.25)]">
