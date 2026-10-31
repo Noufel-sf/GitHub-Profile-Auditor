@@ -211,46 +211,46 @@ export default function AuditReportPage({
           <span className="text-neon-cyan">@{report.username}</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
           <Button
             onClick={handleTogglePin}
             size="sm"
             variant="outline"
-            className={`border-border text-xs font-mono font-bold transition-all ${
+            className={`border-border text-xs font-mono font-bold transition-all whitespace-nowrap shrink-0 ${
               isPinned
                 ? "bg-neon-yellow/20 text-neon-yellow border-neon-yellow/50"
                 : "bg-card text-muted-foreground hover:text-neon-yellow hover:border-neon-yellow/40"
             }`}
           >
             <Star className={`w-3.5 h-3.5 mr-1 ${isPinned ? "fill-neon-yellow" : ""}`} />
-            {isPinned ? "PINNED TO SQUAD" : "PIN PROFILE"}
+            {isPinned ? "PINNED" : "PIN PROFILE"}
           </Button>
 
           <Button
             onClick={() => setIsShareOpen(true)}
             size="sm"
-            className="bg-neon-cyan text-black hover:bg-neon-cyan/80 border-none text-xs font-mono font-bold"
+            className="bg-neon-cyan text-black hover:bg-neon-cyan/80 border-none text-xs font-mono font-bold whitespace-nowrap shrink-0"
           >
             <Share2 className="w-3.5 h-3.5 mr-1" />
             Share Badge
           </Button>
 
-          <Link href={`/report/${encodeURIComponent(username)}/roadmap`}>
-            <Button className="bg-primary text-white hover:bg-primary/90 border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+          <Link href={`/report/${encodeURIComponent(username)}/roadmap`} className="shrink-0">
+            <Button className="bg-primary text-white hover:bg-primary/90 border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)] whitespace-nowrap">
               <Trophy className="w-3.5 h-3.5 mr-1 text-neon-yellow" />
-              RPG QUEST LOG ({report.roadmap.length})
+              QUEST LOG ({report.roadmap.length})
             </Button>
           </Link>
           <a
             href={report.profile.html_url}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex shrink-0"
           >
             <Button
               variant="outline"
               size="sm"
-              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs"
+              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs whitespace-nowrap"
             >
               <GithubIcon className="w-3.5 h-3.5 mr-1" /> View GitHub
             </Button>
@@ -604,7 +604,7 @@ export default function AuditReportPage({
           {/* Filters & Sorting */}
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
             <div className="flex items-center gap-1 bg-background p-1 border border-border">
-              <span className="text-muted-foreground px-1">FILTER:</span>
+              <span className="text-muted-foreground px-1 text-[10px]">FILTER:</span>
               {(["all", "best", "needs_work", "recent"] as const).map((mode) => (
                 <button
                   key={mode}
@@ -613,7 +613,7 @@ export default function AuditReportPage({
                     setRepoFilter(mode);
                     setVisibleRepoCount(15);
                   }}
-                  className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
+                  className={`px-2 py-1 uppercase text-[10px] cursor-pointer whitespace-nowrap ${
                     repoFilter === mode
                       ? "bg-neon-cyan text-black font-bold"
                       : "text-muted-foreground hover:text-foreground"
@@ -625,7 +625,7 @@ export default function AuditReportPage({
             </div>
 
             <div className="flex items-center gap-1 bg-background p-1 border border-border">
-              <span className="text-muted-foreground px-1">SORT:</span>
+              <span className="text-muted-foreground px-1 text-[10px]">SORT:</span>
               {(["score", "stars", "updated"] as const).map((mode) => (
                 <button
                   key={mode}
@@ -634,7 +634,7 @@ export default function AuditReportPage({
                     setRepoSort(mode);
                     setVisibleRepoCount(15);
                   }}
-                  className={`px-2 py-1 uppercase text-[10px] cursor-pointer ${
+                  className={`px-2 py-1 uppercase text-[10px] cursor-pointer whitespace-nowrap ${
                     repoSort === mode
                       ? "bg-primary text-white font-bold"
                       : "text-muted-foreground hover:text-foreground"
@@ -729,20 +729,20 @@ export default function AuditReportPage({
         {/* Pagination / Load More Controls */}
         {hasMoreRepos ? (
           <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs font-mono text-muted-foreground">
+            <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">
               SHOWING <strong className="text-foreground">{visibleRepos.length}</strong> OF{" "}
               <strong className="text-neon-cyan">{filteredRepos.length}</strong> REPOSITORIES
             </span>
             <Button
               onClick={handleLoadMore}
-              className="bg-primary text-white hover:bg-primary/90 font-['Press_Start_2P'] text-[11px] py-3 px-6 shadow-[0_0_15px_rgba(168,85,247,0.35)] cursor-pointer"
+              className="bg-primary text-white hover:bg-primary/90 font-['Press_Start_2P'] text-[11px] py-3 px-6 shadow-[0_0_15px_rgba(168,85,247,0.35)] cursor-pointer whitespace-nowrap shrink-0"
             >
-              LOAD MORE REPOSITORIES (+15)
+              LOAD MORE (+15)
             </Button>
           </div>
         ) : filteredRepos.length > 15 ? (
           <div className="mt-8 pt-6 border-t border-border text-center font-mono text-xs text-muted-foreground">
-            <span className="inline-block px-3 py-1 bg-secondary border border-border text-neon-green">
+            <span className="inline-block px-3 py-1 bg-secondary border border-border text-neon-green whitespace-nowrap">
               ✓ ALL {filteredRepos.length} REPOSITORIES LOADED
             </span>
           </div>

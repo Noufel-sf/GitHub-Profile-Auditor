@@ -161,9 +161,9 @@ export function PublicAuditsShowcase() {
               </p>
 
               {/* Stack indicator */}
-              <div className="p-2.5 bg-background border border-border mb-6 font-mono text-[11px] flex items-center justify-between">
-                <span className="text-muted-foreground">PRIMARY STACK:</span>
-                <span className="text-foreground font-bold">{profile.topTech}</span>
+              <div className="p-2.5 bg-background border border-border mb-6 font-mono text-[11px] flex items-center justify-between gap-2">
+                <span className="text-muted-foreground whitespace-nowrap">PRIMARY STACK:</span>
+                <span className="text-foreground font-bold truncate text-right">{profile.topTech}</span>
               </div>
             </div>
 
@@ -176,14 +176,14 @@ export function PublicAuditsShowcase() {
               >
                 <Button
                   size="sm"
-                  className={`w-full text-xs font-mono py-2 font-bold flex items-center justify-center gap-1.5 ${
+                  className={`w-full text-xs font-mono py-2 font-bold flex items-center justify-center gap-1.5 whitespace-nowrap ${
                     profile.highlight
                       ? "bg-neon-cyan text-black hover:bg-neon-cyan/80"
                       : "bg-secondary text-foreground hover:bg-muted border border-border hover:border-primary"
                   }`}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-primary" />
-                  View Audit <ArrowRight className="w-3 h-3 ml-1" />
+                  <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />
+                  <span>View Audit</span> <ArrowRight className="w-3 h-3 ml-1 shrink-0" />
                 </Button>
               </Link>
 

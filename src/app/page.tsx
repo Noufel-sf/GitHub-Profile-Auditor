@@ -98,7 +98,7 @@ export default function HomePage() {
             <Button
               type="submit"
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 border-none font-bold text-xs font-['Press_Start_2P'] py-4 px-6 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-pointer"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 border-none font-bold text-xs font-['Press_Start_2P'] py-4 px-6 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(168,85,247,0.5)] cursor-pointer whitespace-nowrap shrink-0"
             >
               <Terminal className="w-4 h-4 mr-1 text-neon-cyan" />
               ANALYZE PROFILE
@@ -107,13 +107,13 @@ export default function HomePage() {
 
           {error && (
             <p className="text-left text-xs font-mono text-destructive mt-2 flex items-center gap-1">
-              <AlertCircle className="w-3.5 h-3.5" /> {error}
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" /> {error}
             </p>
           )}
 
           {/* Quick Demo Selectors */}
           <div className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-border/60 text-xs font-mono text-muted-foreground">
-            <span className="text-foreground/80 font-bold">5 PUBLIC AUDIT SAMPLES:</span>
+            <span className="text-foreground/80 font-bold whitespace-nowrap">PUBLIC SAMPLES:</span>
             {[
               { name: "Noufel-sf", label: "Noufel-sf (Creator)", isCreator: true },
               { name: "torvalds", label: "Linus Torvalds" },
@@ -125,7 +125,7 @@ export default function HomePage() {
                 key={user.name}
                 type="button"
                 onClick={() => handleQuickSelect(user.name)}
-                className={`px-2.5 py-1 text-[11px] transition-all cursor-pointer border flex items-center gap-1.5 ${
+                className={`px-2.5 py-1 text-[11px] transition-all cursor-pointer border flex items-center gap-1.5 whitespace-nowrap ${
                   user.isCreator
                     ? "bg-neon-cyan/20 text-neon-cyan border-neon-cyan/60 font-bold hover:bg-neon-cyan/30 shadow-[0_0_10px_rgba(34,211,238,0.2)]"
                     : "bg-secondary hover:bg-muted text-foreground border-border hover:border-primary hover:text-neon-cyan"
@@ -143,22 +143,22 @@ export default function HomePage() {
         </div>
 
         {/* Live stats banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mt-6">
-          <div className="p-3 bg-secondary border border-border/60 text-left">
-            <span className="text-[10px] font-mono text-muted-foreground block">SCORING SYSTEM</span>
-            <span className="font-['Press_Start_2P'] text-sm text-neon-cyan mt-1 block">DETERMINISTIC</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 w-full max-w-4xl mt-6">
+          <div className="p-3 bg-secondary border border-border/60 text-left overflow-hidden">
+            <span className="text-[10px] font-mono text-muted-foreground block truncate">SCORING SYSTEM</span>
+            <span className="font-['Press_Start_2P'] text-[11px] sm:text-xs text-neon-cyan mt-1 block truncate">DETERMINISTIC</span>
           </div>
-          <div className="p-3 bg-secondary border border-border/60 text-left">
-            <span className="text-[10px] font-mono text-muted-foreground block">WEIGHTED CATEGORIES</span>
-            <span className="font-['Press_Start_2P'] text-sm text-neon-green mt-1 block">5 METRICS</span>
+          <div className="p-3 bg-secondary border border-border/60 text-left overflow-hidden">
+            <span className="text-[10px] font-mono text-muted-foreground block truncate">CATEGORIES</span>
+            <span className="font-['Press_Start_2P'] text-[11px] sm:text-xs text-neon-green mt-1 block truncate">5 METRICS</span>
           </div>
-          <div className="p-3 bg-secondary border border-border/60 text-left">
-            <span className="text-[10px] font-mono text-muted-foreground block">AI INSIGHTS</span>
-            <span className="font-['Press_Start_2P'] text-sm text-neon-pink mt-1 block">GEMINI POWERED</span>
+          <div className="p-3 bg-secondary border border-border/60 text-left overflow-hidden">
+            <span className="text-[10px] font-mono text-muted-foreground block truncate">AI INSIGHTS</span>
+            <span className="font-['Press_Start_2P'] text-[11px] sm:text-xs text-neon-pink mt-1 block truncate">GEMINI 2.5</span>
           </div>
-          <div className="p-3 bg-secondary border border-border/60 text-left">
-            <span className="text-[10px] font-mono text-muted-foreground block">ACTIONABLE ROADMAP</span>
-            <span className="font-['Press_Start_2P'] text-sm text-neon-yellow mt-1 block">RPG QUESTS</span>
+          <div className="p-3 bg-secondary border border-border/60 text-left overflow-hidden">
+            <span className="text-[10px] font-mono text-muted-foreground block truncate">RPG ROADMAP</span>
+            <span className="font-['Press_Start_2P'] text-[11px] sm:text-xs text-neon-yellow mt-1 block truncate">QUEST LOG</span>
           </div>
         </div>
 

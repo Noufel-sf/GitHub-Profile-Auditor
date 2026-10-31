@@ -72,59 +72,53 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Center Nav */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wide">
-            <Link
-              href="/"
-              className="text-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
-            >
-              <span className="text-neon-cyan font-bold">[01]</span> HOME
-            </Link>
+          <nav className="hidden lg:flex items-center gap-5 text-xs font-mono tracking-wide whitespace-nowrap">
             <Link
               href="/#features"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-primary font-bold">[02]</span> FEATURES
+              FEATURES
             </Link>
             <Link
               href="/#why-it-matters"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-neon-pink font-bold">[03]</span> WHY AUDIT
+              WHY AUDIT
             </Link>
             <Link
               href="/#categories"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-neon-green font-bold">[04]</span> METRICS
+              METRICS
             </Link>
             <Link
               href="/#example-audits"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-neon-yellow font-bold">[05]</span> 5 SAMPLES
+              SAMPLES
             </Link>
             <Link
               href="/#faq"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-neon-cyan font-bold">[06]</span> FAQ
+              FAQ
             </Link>
             <Link
               href="/leaderboard"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
-              <span className="text-primary font-bold">[07]</span> HALL OF FAME
+              HALL OF FAME
             </Link>
           </nav>
 
           {/* Desktop Controls & Action Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             <ThemeToggle />
 
             <button
               onClick={handleToggleSound}
               title={muted ? "Enable Arcade SFX" : "Mute Arcade SFX"}
-              className="p-2 bg-card border border-border hover:border-neon-cyan text-neon-cyan transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer"
+              className="p-2 bg-card border border-border hover:border-neon-cyan text-neon-cyan transition-colors flex items-center gap-1.5 text-xs font-mono cursor-pointer shrink-0 whitespace-nowrap"
             >
               {muted ? (
                 <>
@@ -139,10 +133,10 @@ export function Navbar() {
               )}
             </button>
 
-            <Link href="/#audit-form">
+            <Link href="/#audit-form" className="shrink-0">
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 border-none shadow-[0_0_15px_rgba(168,85,247,0.4)] text-[11px] font-bold"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 border-none shadow-[0_0_15px_rgba(168,85,247,0.4)] text-[11px] font-bold whitespace-nowrap"
               >
                 <Terminal className="w-3.5 h-3.5 mr-1" />
                 START AUDIT
@@ -198,15 +192,13 @@ export function Navbar() {
               </div>
 
               {/* Navigation Links */}
-              <nav className="space-y-2.5 font-mono text-sm mb-6">
+              <nav className="space-y-2 font-mono text-sm mb-6">
                 <Link
                   href="/"
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-neon-cyan text-xs font-bold">[01]</span> HOME
-                  </span>
+                  <span className="font-bold">HOME</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -215,9 +207,7 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-primary text-xs font-bold">[02]</span> FEATURES
-                  </span>
+                  <span>FEATURES</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -226,9 +216,7 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-neon-pink text-xs font-bold">[03]</span> WHY AUDIT
-                  </span>
+                  <span>WHY AUDIT</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -237,9 +225,7 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-neon-green text-xs font-bold">[04]</span> AUDIT METRICS
-                  </span>
+                  <span>METRICS</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -248,9 +234,7 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-neon-yellow text-xs font-bold">[05]</span> 5 SAMPLES
-                  </span>
+                  <span>PUBLIC SAMPLES</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -259,9 +243,7 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-neon-cyan text-xs font-bold">[06]</span> FAQ
-                  </span>
+                  <span>FAQ</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
@@ -270,15 +252,13 @@ export function Navbar() {
                   onClick={closeMenu}
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="text-primary text-xs font-bold">[07]</span> HALL OF FAME
-                  </span>
+                  <span>HALL OF FAME</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
               </nav>
 
               {/* SYSTEM CONTROLS (Theme & Audio) */}
-              <div className="space-y-3 pt-4 border-t border-border/60">
+              <div className="space-y-2.5 pt-4 border-t border-border/60">
                 <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block mb-1">
                   System Preferences
                 </span>
@@ -297,10 +277,10 @@ export function Navbar() {
                     ) : (
                       <Sun className="w-4 h-4 text-neon-yellow" />
                     )}
-                    <span>THEME MODE:</span>
+                    <span>THEME:</span>
                   </span>
                   <span className={`font-bold ${isDark ? "text-primary" : "text-neon-yellow"}`}>
-                    {isDark ? "OBSIDIAN BLACK" : "DAY ARCADE (WHITE)"}
+                    {isDark ? "DARK" : "LIGHT"}
                   </span>
                 </button>
 
@@ -315,7 +295,7 @@ export function Navbar() {
                     ) : (
                       <Volume2 className="w-4 h-4 text-neon-green" />
                     )}
-                    <span>ARCADE SFX:</span>
+                    <span>SFX:</span>
                   </span>
                   <span className={`font-bold ${muted ? "text-destructive" : "text-neon-green"}`}>
                     {muted ? "MUTED" : "ENABLED"}

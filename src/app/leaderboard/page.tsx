@@ -171,10 +171,10 @@ export default function LeaderboardPage() {
         <Link href="/#audit-form">
           <Button
             size="lg"
-            className="bg-primary text-white hover:bg-primary/90 border-none font-['Press_Start_2P'] text-xs py-3 px-6 shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+            className="bg-primary text-white hover:bg-primary/90 border-none font-['Press_Start_2P'] text-xs py-3.5 px-6 shadow-[0_0_20px_rgba(168,85,247,0.3)] whitespace-nowrap"
           >
-            <Flame className="w-4 h-4 mr-1 text-neon-yellow" />
-            INSERT COIN // SUBMIT YOUR SCORE
+            <Flame className="w-4 h-4 mr-1 text-neon-yellow shrink-0" />
+            AUDIT YOUR PROFILE
           </Button>
         </Link>
       </div>
@@ -182,7 +182,7 @@ export default function LeaderboardPage() {
       {/* Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-secondary border border-border font-mono text-xs">
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-2.5 shrink-0" />
           <input
             type="text"
             placeholder="Search developer, name, or stack..."
@@ -192,13 +192,13 @@ export default function LeaderboardPage() {
           />
         </div>
 
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <span className="text-muted-foreground">TIER:</span>
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <span className="text-muted-foreground whitespace-nowrap">TIER:</span>
           {["all", "S", "A", "B"].map((g) => (
             <button
               key={g}
               onClick={() => setSelectedGrade(g)}
-              className={`px-3 py-1 uppercase text-xs cursor-pointer border ${
+              className={`px-3 py-1 uppercase text-xs cursor-pointer border whitespace-nowrap ${
                 selectedGrade === g
                   ? "bg-neon-cyan text-black border-neon-cyan font-bold"
                   : "bg-card text-muted-foreground border-border hover:text-foreground"
@@ -214,7 +214,7 @@ export default function LeaderboardPage() {
       <div className="bg-card border-2 border-border overflow-x-auto">
         <table className="w-full text-left font-mono text-xs">
           <thead>
-            <tr className="bg-background text-muted-foreground border-b border-border">
+            <tr className="bg-background text-muted-foreground border-b border-border whitespace-nowrap">
               <th className="py-3 px-4 w-16">RANK</th>
               <th className="py-3 px-4">DEVELOPER</th>
               <th className="py-3 px-4">ARCHETYPE</th>
@@ -228,7 +228,7 @@ export default function LeaderboardPage() {
             {filtered.map((entry) => (
               <tr
                 key={entry.username}
-                className="hover:bg-muted/50 transition-colors"
+                className="hover:bg-muted/50 transition-colors whitespace-nowrap"
               >
                 {/* Rank Badge */}
                 <td className="py-4 px-4">
@@ -251,7 +251,7 @@ export default function LeaderboardPage() {
                     <img
                       src={entry.avatarUrl}
                       alt={entry.name}
-                      className="w-10 h-10 border border-border object-cover"
+                      className="w-10 h-10 border border-border object-cover shrink-0"
                     />
                     <div>
                       <div className="font-bold text-foreground flex items-center gap-1.5">
@@ -288,7 +288,7 @@ export default function LeaderboardPage() {
                       {entry.score}
                     </span>
                     <span className="px-1.5 py-0.2 bg-neon-green/20 text-neon-green border border-neon-green/40 text-[10px] font-bold">
-                      RANK {entry.grade}
+                      {entry.grade}
                     </span>
                   </div>
                 </td>
@@ -298,9 +298,9 @@ export default function LeaderboardPage() {
                   <Link href={`/report/${encodeURIComponent(entry.username)}`}>
                     <Button
                       size="sm"
-                      className="bg-card border border-border hover:border-neon-cyan text-neon-cyan text-[11px]"
+                      className="bg-card hover:bg-muted border border-border text-foreground hover:text-neon-cyan text-xs py-1 whitespace-nowrap"
                     >
-                      View Audit &gt;
+                      View Report
                     </Button>
                   </Link>
                 </td>

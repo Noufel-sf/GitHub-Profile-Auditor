@@ -149,12 +149,12 @@ export default function GamifiedRoadmapPage({
           <span className="text-primary">@{username}</span>
         </div>
 
-        <Link href={`/audit/${encodeURIComponent(username)}`}>
+        <Link href={`/audit/${encodeURIComponent(username)}`} className="shrink-0">
           <Button
             size="sm"
-            className="bg-card text-neon-cyan border-border hover:bg-muted text-xs font-mono"
+            className="bg-card text-neon-cyan border-border hover:bg-muted text-xs font-mono whitespace-nowrap"
           >
-            <RefreshCw className="w-3.5 h-3.5 mr-1" /> Re-Audit & Verify Progress
+            <RefreshCw className="w-3.5 h-3.5 mr-1 shrink-0" /> Re-Audit Profile
           </Button>
         </Link>
       </div>

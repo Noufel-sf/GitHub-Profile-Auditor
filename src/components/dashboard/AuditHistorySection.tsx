@@ -240,26 +240,26 @@ export function AuditHistorySection({ currentUsername }: AuditHistorySectionProp
                   </div>
 
                   {/* Progress Delta Badge */}
-                  <div className="p-2 bg-background border border-border mb-3 font-mono text-[11px] flex items-center justify-between">
-                    <span className="text-muted-foreground">PROGRESS:</span>
+                  <div className="p-2 bg-background border border-border mb-3 font-mono text-[11px] flex items-center justify-between gap-2 overflow-hidden">
+                    <span className="text-muted-foreground whitespace-nowrap">PROGRESS:</span>
                     {record.scoreDiff !== undefined ? (
                       record.scoreDiff > 0 ? (
-                        <span className="text-neon-green font-bold flex items-center gap-1">
-                          <TrendingUp className="w-3.5 h-3.5" />+{record.scoreDiff} PTS GAINED
+                        <span className="text-neon-green font-bold flex items-center gap-1 whitespace-nowrap truncate">
+                          <TrendingUp className="w-3.5 h-3.5 shrink-0" />+{record.scoreDiff} PTS
                         </span>
                       ) : record.scoreDiff < 0 ? (
-                        <span className="text-destructive font-bold flex items-center gap-1">
-                          <TrendingDown className="w-3.5 h-3.5" />
+                        <span className="text-destructive font-bold flex items-center gap-1 whitespace-nowrap truncate">
+                          <TrendingDown className="w-3.5 h-3.5 shrink-0" />
                           {record.scoreDiff} PTS
                         </span>
                       ) : (
-                        <span className="text-neon-cyan font-bold flex items-center gap-1">
-                          <Minus className="w-3.5 h-3.5" /> MAINTAINED ({record.overallScore})
+                        <span className="text-neon-cyan font-bold flex items-center gap-1 whitespace-nowrap truncate">
+                          <Minus className="w-3.5 h-3.5 shrink-0" /> STEADY ({record.overallScore})
                         </span>
                       )
                     ) : (
-                      <span className="text-neon-yellow flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" /> INITIAL AUDIT
+                      <span className="text-neon-yellow flex items-center gap-1 whitespace-nowrap truncate">
+                        <Sparkles className="w-3 h-3 shrink-0" /> INITIAL AUDIT
                       </span>
                     )}
                   </div>
@@ -273,9 +273,9 @@ export function AuditHistorySection({ currentUsername }: AuditHistorySectionProp
                   >
                     <Button
                       size="sm"
-                      className="w-full bg-card hover:bg-muted border border-border hover:border-neon-cyan text-foreground text-xs font-mono py-1"
+                      className="w-full bg-card hover:bg-muted border border-border hover:border-neon-cyan text-foreground text-xs font-mono py-1 whitespace-nowrap flex items-center justify-center gap-1"
                     >
-                      View Report <ArrowRight className="w-3 h-3 ml-1" />
+                      <span>View Report</span> <ArrowRight className="w-3 h-3 shrink-0" />
                     </Button>
                   </Link>
 

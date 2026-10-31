@@ -93,8 +93,8 @@ export function FaqSection() {
                 onClick={() => toggleItem(item.id)}
                 className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-secondary text-primary border border-border font-bold">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-[10px] font-mono px-2 py-0.5 bg-secondary text-primary border border-border font-bold shrink-0 whitespace-nowrap">
                     {item.category}
                   </span>
                   <span className="text-xs sm:text-sm font-bold text-foreground">

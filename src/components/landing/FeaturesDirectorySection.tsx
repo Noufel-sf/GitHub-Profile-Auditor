@@ -167,7 +167,7 @@ export function FeaturesDirectorySection() {
                   <div className={`w-8 h-8 bg-secondary border flex items-center justify-center shrink-0 ${feat.accentColor}`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-['Press_Start_2P'] text-xs text-foreground group-hover:text-neon-cyan transition-colors leading-relaxed">
+                  <h3 className="font-['Press_Start_2P'] text-[11px] text-foreground group-hover:text-neon-cyan transition-colors leading-snug">
                     {feat.title}
                   </h3>
                 </div>
@@ -186,10 +186,10 @@ export function FeaturesDirectorySection() {
                 >
                   <Button
                     size="sm"
-                    className="w-full bg-secondary hover:bg-muted border border-border group-hover:border-neon-cyan text-foreground hover:text-neon-cyan text-xs font-mono py-2 transition-colors flex items-center justify-between"
+                    className="w-full bg-secondary hover:bg-muted border border-border group-hover:border-neon-cyan text-foreground hover:text-neon-cyan text-xs font-mono py-2 transition-colors flex items-center justify-between whitespace-nowrap"
                   >
-                    <span>{feat.actionText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-neon-cyan group-hover:translate-x-1 transition-transform" />
+                    <span className="truncate">{feat.actionText}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-neon-cyan group-hover:translate-x-1 transition-transform shrink-0 ml-1.5" />
                   </Button>
                 </Link>
               </div>
