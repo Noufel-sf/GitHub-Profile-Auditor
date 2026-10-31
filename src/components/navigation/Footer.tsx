@@ -36,6 +36,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-[11px]">
               <li>
+                <Link href="/#repo-evaluator" className="hover:text-neon-cyan transition-colors">
+                  &gt; Repo Deep Evaluator
+                </Link>
+              </li>
+              <li>
                 <Link href="/#features" className="hover:text-neon-cyan transition-colors">
                   &gt; Feature Arsenal
                 </Link>

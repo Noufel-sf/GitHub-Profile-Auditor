@@ -123,29 +123,45 @@ export default function RepositoryDeepAnalysisPage({
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Top Breadcrumb */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
-        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-          <Link href={`/report/${encodeURIComponent(username)}`} className="hover:text-neon-cyan flex items-center gap-1">
-            <ArrowLeft className="w-3.5 h-3.5" /> REPORT
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground flex-wrap">
+          <Link href="/" className="hover:text-neon-cyan transition-colors">
+            HOME
+          </Link>
+          <span>/</span>
+          <Link href={`/report/${encodeURIComponent(username)}`} className="hover:text-neon-cyan transition-colors">
+            @{username}
           </Link>
           <span>/</span>
           <span className="text-foreground">REPOSITORIES</span>
           <span>/</span>
-          <span className="text-neon-cyan">{repo}</span>
+          <span className="text-neon-cyan font-bold">{repo}</span>
         </div>
 
-        <a
-          href={`https://github.com/${username}/${repo}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Button
-            variant="outline"
-            size="sm"
-            className="bg-card text-neon-cyan border-border hover:bg-muted text-xs"
+        <div className="flex items-center gap-2 flex-wrap">
+          <Link href={`/audit/${encodeURIComponent(username)}`}>
+            <Button
+              size="sm"
+              variant="outline"
+              className="bg-card text-foreground border-border hover:border-primary text-xs whitespace-nowrap"
+            >
+              <Terminal className="w-3.5 h-3.5 mr-1 text-primary shrink-0" /> Full @{username} Audit
+            </Button>
+          </Link>
+
+          <a
+            href={`https://github.com/${username}/${repo}`}
+            target="_blank"
+            rel="noreferrer"
           >
-            <ExternalLink className="w-3.5 h-3.5 mr-1" /> Open on GitHub
-          </Button>
-        </a>
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs whitespace-nowrap"
+            >
+              <ExternalLink className="w-3.5 h-3.5 mr-1 shrink-0" /> Open on GitHub
+            </Button>
+          </a>
+        </div>
       </div>
 
       {/* REPO TITLE HEADER */}

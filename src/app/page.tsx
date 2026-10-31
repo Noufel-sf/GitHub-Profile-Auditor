@@ -26,6 +26,7 @@ import { GithubIcon } from "@/components/ui/icons";
 import { AuditHistorySection } from "@/components/dashboard/AuditHistorySection";
 import { FeaturesDirectorySection } from "@/components/landing/FeaturesDirectorySection";
 import { PublicAuditsShowcase } from "@/components/landing/PublicAuditsShowcase";
+import { RepoEvaluatorSection } from "@/components/landing/RepoEvaluatorSection";
 import { RecruiterComparisonSection } from "@/components/landing/RecruiterComparisonSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 
@@ -170,6 +171,9 @@ export default function HomePage() {
 
       {/* 5 PUBLIC AUDIT SHOWCASE */}
       <PublicAuditsShowcase />
+
+      {/* SINGLE REPOSITORY EVALUATOR */}
+      <RepoEvaluatorSection />
 
       {/* ARCADE FEATURE DIRECTORY & NAVIGATOR */}
       <FeaturesDirectorySection />

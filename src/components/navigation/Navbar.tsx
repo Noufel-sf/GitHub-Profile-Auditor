@@ -72,12 +72,18 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Center Nav */}
-          <nav className="hidden lg:flex items-center gap-5 text-xs font-mono tracking-wide whitespace-nowrap">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-xs font-mono tracking-wide whitespace-nowrap">
             <Link
               href="/#features"
               className="text-muted-foreground hover:text-neon-cyan transition-colors"
             >
               FEATURES
+            </Link>
+            <Link
+              href="/#repo-evaluator"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
+            >
+              REPO AUDIT
             </Link>
             <Link
               href="/#why-it-matters"
@@ -208,6 +214,15 @@ export function Navbar() {
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <span>FEATURES</span>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </Link>
+
+                <Link
+                  href="/#repo-evaluator"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="text-neon-cyan font-bold">REPO EVALUATOR</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
 
