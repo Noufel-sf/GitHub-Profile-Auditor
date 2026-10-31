@@ -115,6 +115,12 @@ export function Navbar() {
             >
               HALL OF FAME
             </Link>
+            <Link
+              href="/about"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors font-bold text-neon-cyan/90"
+            >
+              ABOUT
+            </Link>
           </nav>
 
           {/* Desktop Controls & Action Buttons */}
@@ -268,6 +274,15 @@ export function Navbar() {
                   className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <span>HALL OF FAME</span>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </Link>
+
+                <Link
+                  href="/about"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="text-neon-cyan font-bold">ABOUT THE CREATOR</span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
               </nav>

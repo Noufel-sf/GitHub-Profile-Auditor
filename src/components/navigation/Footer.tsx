@@ -61,6 +61,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="hover:text-neon-cyan transition-colors text-foreground font-bold">
+                  &gt; About the Creator (@Noufel-sf)
+                </Link>
+              </li>
+              <li>
                 <Link href="/leaderboard" className="hover:text-primary transition-colors">
                   &gt; Arcade Hall of Fame
                 </Link>
