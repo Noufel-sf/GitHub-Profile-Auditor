@@ -222,48 +222,57 @@ export default function AuditReportPage({
           <span className="text-neon-cyan">@{report.username}</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 gap-y-2">
           <Button
             onClick={handleTogglePin}
             size="sm"
             variant="outline"
-            className={`border-border text-xs font-mono font-bold transition-all whitespace-nowrap shrink-0 ${
+            className={`border-border text-xs font-mono font-bold transition-all whitespace-nowrap shrink-0 h-8 px-2.5 sm:px-3 ${
               isPinned
                 ? "bg-neon-yellow/20 text-neon-yellow border-neon-yellow/50"
                 : "bg-card text-muted-foreground hover:text-neon-yellow hover:border-neon-yellow/40"
             }`}
+            title={isPinned ? "Unpin profile from squad" : "Pin profile to squad"}
           >
-            <Star className={`w-3.5 h-3.5 mr-1 ${isPinned ? "fill-neon-yellow" : ""}`} />
-            {isPinned ? "PINNED" : "PIN PROFILE"}
+            <Star className={`w-3.5 h-3.5 mr-1 ${isPinned ? "fill-neon-yellow text-neon-yellow" : ""}`} />
+            {isPinned ? "Pinned" : "Pin"}
           </Button>
 
           <Button
             onClick={() => setIsShareOpen(true)}
             size="sm"
-            className="bg-neon-cyan text-black hover:bg-neon-cyan/80 border-none text-xs font-mono font-bold whitespace-nowrap shrink-0"
+            className="bg-neon-cyan text-black hover:bg-neon-cyan/80 border-none text-xs font-mono font-bold whitespace-nowrap shrink-0 h-8 px-2.5 sm:px-3"
+            title="Share audit badge"
           >
-            <Share2 className="w-3.5 h-3.5 mr-1" />
-            Share Badge
+            <Share2 className="w-3.5 h-3.5 mr-1 shrink-0" />
+            Share
           </Button>
 
           <Link href={`/report/${encodeURIComponent(username)}/roadmap`} className="shrink-0">
-            <Button className="bg-primary text-white hover:bg-primary/90 border-none text-xs font-['Press_Start_2P'] py-2.5 px-4 shadow-[0_0_15px_rgba(168,85,247,0.4)] whitespace-nowrap">
-              <Trophy className="w-3.5 h-3.5 mr-1 text-neon-yellow" />
-              QUEST LOG ({report.roadmap.length})
+            <Button
+              size="sm"
+              className="bg-primary text-white hover:bg-primary/90 border-none text-xs font-mono font-bold h-8 px-2.5 sm:px-3 shadow-[0_0_12px_rgba(168,85,247,0.35)] whitespace-nowrap"
+              title="View gamified quest log roadmap"
+            >
+              <Trophy className="w-3.5 h-3.5 mr-1 text-neon-yellow shrink-0" />
+              Quests ({report.roadmap.length})
             </Button>
           </Link>
+
           <a
             href={report.profile.html_url}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex shrink-0"
+            className="inline-flex shrink-0"
+            title="View GitHub profile"
           >
             <Button
               variant="outline"
               size="sm"
-              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs whitespace-nowrap"
+              className="bg-card text-neon-cyan border-border hover:bg-muted text-xs font-mono font-bold h-8 px-2.5 sm:px-3 whitespace-nowrap"
             >
-              <GithubIcon className="w-3.5 h-3.5 mr-1" /> View GitHub
+              <GithubIcon className="w-3.5 h-3.5 mr-1 shrink-0" />
+              GitHub
             </Button>
           </a>
         </div>
