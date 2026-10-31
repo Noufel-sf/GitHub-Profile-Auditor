@@ -28,27 +28,16 @@ interface LeaderboardEntry {
   topLanguage: string;
   publicRepos: number;
   followers: number;
+  isCreator?: boolean;
 }
 
 const HALL_OF_FAME: LeaderboardEntry[] = [
   {
     rank: 1,
-    username: "Noufel-sf",
-    name: "Noufel seif el islam",
-    avatarUrl: "https://avatars.githubusercontent.com/u/202407807?v=4",
-    score: 95,
-    grade: "S",
-    archetype: "DevScope Creator & Architect",
-    topLanguage: "TypeScript",
-    publicRepos: 40,
-    followers: 166,
-  },
-  {
-    rank: 2,
     username: "torvalds",
     name: "Linus Torvalds",
     avatarUrl: "https://avatars.githubusercontent.com/u/1024025?v=4",
-    score: 98,
+    score: 99,
     grade: "S",
     archetype: "System Kernel Sovereign",
     topLanguage: "C",
@@ -56,11 +45,11 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 242000,
   },
   {
-    rank: 3,
+    rank: 2,
     username: "sindresorhus",
     name: "Sindre Sorhus",
     avatarUrl: "https://avatars.githubusercontent.com/u/170270?v=4",
-    score: 96,
+    score: 97,
     grade: "S",
     archetype: "Open-Source Titan",
     topLanguage: "TypeScript",
@@ -68,52 +57,77 @@ const HALL_OF_FAME: LeaderboardEntry[] = [
     followers: 66000,
   },
   {
-    rank: 4,
-    username: "shadcn",
-    name: "shadcn",
-    avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
-    score: 94,
+    rank: 3,
+    username: "yyx990803",
+    name: "Evan You",
+    avatarUrl: "https://avatars.githubusercontent.com/u/499550?v=4",
+    score: 95,
     grade: "S",
-    archetype: "Design System Sorcerer",
+    archetype: "Vite & Vue.js Architect",
     topLanguage: "TypeScript",
-    publicRepos: 18,
-    followers: 81000,
+    publicRepos: 85,
+    followers: 102000,
   },
   {
-    rank: 5,
+    rank: 4,
     username: "antfu",
     name: "Anthony Fu",
     avatarUrl: "https://avatars.githubusercontent.com/u/11247099?v=4",
-    score: 93,
+    score: 94,
     grade: "S",
-    archetype: "Vite & Tooling Architect",
+    archetype: "Ecosystem & DX Alchemist",
     topLanguage: "TypeScript",
     publicRepos: 480,
     followers: 47000,
   },
   {
+    rank: 5,
+    username: "shadcn",
+    name: "shadcn",
+    avatarUrl: "https://avatars.githubusercontent.com/u/124599?v=4",
+    score: 93,
+    grade: "S",
+    archetype: "Design Systems Sorcerer",
+    topLanguage: "TypeScript",
+    publicRepos: 18,
+    followers: 81000,
+  },
+  {
     rank: 6,
+    username: "gaearon",
+    name: "Dan Abramov",
+    avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
+    score: 92,
+    grade: "S",
+    archetype: "React Core Pioneer",
+    topLanguage: "JavaScript",
+    publicRepos: 270,
+    followers: 92000,
+  },
+  {
+    rank: 7,
     username: "leerob",
     name: "Lee Robinson",
     avatarUrl: "https://avatars.githubusercontent.com/u/9113740?v=4",
-    score: 91,
+    score: 90,
     grade: "S",
-    archetype: "Modern Web Evangelist",
+    archetype: "Web Platforms Evangelist",
     topLanguage: "TypeScript",
     publicRepos: 82,
     followers: 38000,
   },
   {
-    rank: 7,
-    username: "gaearon",
-    name: "Dan Abramov",
-    avatarUrl: "https://avatars.githubusercontent.com/u/810438?v=4",
-    score: 90,
-    grade: "S",
-    archetype: "React Pioneer",
-    topLanguage: "JavaScript",
-    publicRepos: 270,
-    followers: 92000,
+    rank: 8,
+    username: "Noufel-sf",
+    name: "Noufel seif el islam",
+    avatarUrl: "https://avatars.githubusercontent.com/u/202407807?v=4",
+    score: 86,
+    grade: "A",
+    archetype: "Full-Stack Architect & DevScope Creator",
+    topLanguage: "TypeScript",
+    publicRepos: 40,
+    followers: 166,
+    isCreator: true,
   },
 ];
 
@@ -231,7 +245,11 @@ export default function LeaderboardPage() {
             {filtered.map((entry) => (
               <tr
                 key={entry.username}
-                className="hover:bg-muted/50 transition-colors whitespace-nowrap"
+                className={`transition-colors whitespace-nowrap ${
+                  entry.isCreator
+                    ? "bg-neon-cyan/5 hover:bg-neon-cyan/10 border-l-2 border-l-neon-cyan"
+                    : "hover:bg-muted/50"
+                }`}
               >
                 {/* Rank Badge */}
                 <td className="py-4 px-4">
@@ -254,11 +272,18 @@ export default function LeaderboardPage() {
                     <img
                       src={entry.avatarUrl}
                       alt={entry.name}
-                      className="w-10 h-10 border border-border object-cover shrink-0"
+                      className={`w-10 h-10 object-cover shrink-0 border ${
+                        entry.isCreator ? "border-neon-cyan shadow-[0_0_8px_rgba(34,211,238,0.3)]" : "border-border"
+                      }`}
                     />
                     <div>
-                      <div className="font-bold text-foreground flex items-center gap-1.5">
-                        {entry.name}
+                      <div className="font-bold text-foreground flex items-center gap-2">
+                        <span>{entry.name}</span>
+                        {entry.isCreator && (
+                          <span className="px-1.5 py-0.2 bg-neon-cyan text-black font-mono text-[9px] font-bold">
+                            CREATOR
+                          </span>
+                        )}
                       </div>
                       <span className="text-neon-cyan text-[11px]">
                         @{entry.username}
