@@ -23,6 +23,61 @@ interface AuditChartsProps {
   report: OverallAuditReport;
 }
 
+function CustomBarTooltip({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: any[];
+  label?: string;
+}) {
+  if (!active || !payload || !payload.length) return null;
+  const item = payload[0];
+  const count = item.value;
+  const color = item.payload?.color || item.color || "#22D3EE";
+
+  return (
+    <div className="bg-card/95 backdrop-blur-md border-2 border-border p-3 shadow-[0_0_20px_rgba(0,0,0,0.7)] font-mono text-xs z-50 min-w-[160px]">
+      <div className="flex items-center gap-2 mb-1.5 pb-1 border-b border-border/80">
+        <span
+          className="w-2.5 h-2.5 shrink-0"
+          style={{ backgroundColor: color }}
+        />
+        <span className="font-bold text-foreground truncate">{label}</span>
+      </div>
+      <div className="flex items-center justify-between text-muted-foreground gap-3">
+        <span>Public Repos:</span>
+        <span className="font-bold text-neon-cyan">
+          {count} {count === 1 ? "repo" : "repos"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function CustomRadarTooltip({
+  active,
+  payload,
+}: {
+  active?: boolean;
+  payload?: any[];
+}) {
+  if (!active || !payload || !payload.length) return null;
+  const item = payload[0];
+  return (
+    <div className="bg-card/95 backdrop-blur-md border-2 border-neon-cyan p-2.5 shadow-[0_0_15px_rgba(34,211,238,0.3)] font-mono text-xs z-50">
+      <span className="font-bold text-foreground block mb-1">
+        {item.payload?.category} Metric
+      </span>
+      <div className="flex items-center justify-between gap-3 text-muted-foreground">
+        <span>Score:</span>
+        <span className="font-bold text-neon-cyan">{item.value}/100</span>
+      </div>
+    </div>
+  );
+}
+
 export function AuditCharts({ report }: AuditChartsProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -81,15 +136,16 @@ export function AuditCharts({ report }: AuditChartsProps) {
     }
   });
 
+  const neonColors = ["#22D3EE", "#A855F7", "#EC4899", "#A3E635", "#FACC15"];
+
   const languageData = Array.from(languageCounts.entries())
-    .map(([name, count]) => ({
+    .map(([name, count], index) => ({
       name,
       count,
+      color: neonColors[index % neonColors.length],
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
-
-  const neonColors = ["#22D3EE", "#A855F7", "#EC4899", "#A3E635", "#FACC15"];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -131,6 +187,7 @@ export function AuditCharts({ report }: AuditChartsProps) {
                 stroke={isDark ? "#27272a" : "#e4e4e7"}
                 tick={{ fill: "#71717a", fontSize: 9 }}
               />
+              <Tooltip content={<CustomRadarTooltip />} />
               <Radar
                 name="Score"
                 dataKey="score"
@@ -200,15 +257,8 @@ export function AuditCharts({ report }: AuditChartsProps) {
                   allowDecimals={false}
                 />
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: isDark ? "#121215" : "#ffffff",
-                    borderColor: isDark ? "#27272a" : "#e4e4e7",
-                    borderRadius: "0px",
-                    fontFamily: "monospace",
-                    fontSize: "12px",
-                    color: isDark ? "#fafafa" : "#09090b",
-                  }}
-                  cursor={{ fill: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}
+                  content={<CustomBarTooltip />}
+                  cursor={{ fill: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)" }}
                 />
                 <Bar dataKey="count" name="Repositories" radius={[0, 0, 0, 0]}>
                   {languageData.map((_, index) => (
