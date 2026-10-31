@@ -222,7 +222,7 @@ export default function AuditReportPage({
           <span className="text-neon-cyan">@{report.username}</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 gap-y-2">
+        <div className="flex flex-wrap items-center gap-5 sm:gap-7 gap-y-6">
           <Button
             onClick={handleTogglePin}
             size="sm"

@@ -29,6 +29,7 @@ import { PublicAuditsShowcase } from "@/components/landing/PublicAuditsShowcase"
 import { RepoEvaluatorSection } from "@/components/landing/RepoEvaluatorSection";
 import { RecruiterComparisonSection } from "@/components/landing/RecruiterComparisonSection";
 import { FaqSection } from "@/components/landing/FaqSection";
+import { ArcadeFloatingDecorations } from "@/components/ui/ArcadeFloatingDecorations";
 
 export default function HomePage() {
   const router = useRouter();
@@ -55,25 +56,28 @@ export default function HomePage() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       {/* HERO SECTION */}
-      <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 flex flex-col items-center text-center">
+      <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 flex flex-col items-center text-center overflow-hidden">
+        {/* Floating Arcade SVG Doodles */}
+        <ArcadeFloatingDecorations />
+
         {/* Retro Header Pill */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 bg-card border border-neon-cyan text-neon-cyan text-xs font-mono tracking-widest shadow-[0_0_12px_rgba(34,211,238,0.25)]">
+        <div className="relative z-10 inline-flex items-center gap-2 px-3 py-1 mb-8 bg-card border border-neon-cyan text-neon-cyan text-xs font-mono tracking-widest shadow-[0_0_12px_rgba(34,211,238,0.25)]">
           <span className="w-2 h-2 rounded-none bg-neon-cyan animate-ping" />
           <span>DEV SCOPE // ARCADE AUDITING SUITE</span>
           <span className="text-neon-pink font-bold">READY</span>
         </div>
 
         {/* Large Pixel Heading */}
-        <h1 className="font-['Press_Start_2P'] text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight leading-relaxed max-w-5xl mb-6">
+        <h1 className="relative z-10 font-['Press_Start_2P'] text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight leading-relaxed max-w-5xl mb-6">
           LEVEL UP YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-neon-cyan to-neon-pink">GITHUB</span>.
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-10 font-sans">
+        <p className="relative z-10 text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-10 font-sans">
           Your GitHub profile tells a story. DevScope performs an engineering audit across documentation, code indicators, repository hygiene, and generates an actionable RPG improvement roadmap.
         </p>
 
         {/* Audit Search Box */}
-        <div id="audit-form" className="w-full max-w-2xl bg-card border-2 border-border p-3 sm:p-4 shadow-[0_0_25px_rgba(168,85,247,0.15)] relative mb-6">
+        <div id="audit-form" className="relative z-10 w-full max-w-2xl bg-card border-2 border-border p-3 sm:p-4 shadow-[0_0_25px_rgba(168,85,247,0.15)] mb-6">
           {/* Decorative Corner Pixels */}
           <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-neon-cyan" />
           <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-neon-pink" />

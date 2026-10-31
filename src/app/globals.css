@@ -184,6 +184,52 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
   pointer-events: none;
 }
 
+/* Arcade floating decorative doodle animations */
+@keyframes arcadeFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes arcadeFloatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-4deg);
+  }
+}
+
+@keyframes arcadePulseSlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.arcade-float {
+  animation: arcadeFloat 5s ease-in-out infinite;
+}
+
+.arcade-float-slow {
+  animation: arcadeFloatReverse 7s ease-in-out infinite;
+}
+
+.arcade-float-fast {
+  animation: arcadeFloat 3.8s ease-in-out infinite;
+}
+
+.arcade-pulse-slow {
+  animation: arcadePulseSlow 4s ease-in-out infinite;
+}
+
 /* Custom retro arcade cursor only on precision desktop screens */
 @media (min-width: 769px) and (pointer: fine) {
   body, button, a, input, select, textarea, [role="button"], .cursor-pointer {

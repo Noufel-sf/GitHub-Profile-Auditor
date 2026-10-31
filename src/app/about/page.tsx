@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/8bit/button";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/icons";
 import { arcadeAudio } from "@/lib/sound/audio";
+import { ArcadeFloatingDecorations } from "@/components/ui/ArcadeFloatingDecorations";
 
 export default function AboutPage() {
   const socialLinks = [
@@ -72,6 +73,8 @@ export default function AboutPage() {
 
       {/* CREATOR DOSSIER HERO */}
       <div className="bg-card border-2 border-border p-5 sm:p-8 md:p-10 relative overflow-hidden shadow-[0_0_35px_rgba(34,211,238,0.15)]">
+        <ArcadeFloatingDecorations variant="compact" />
+
         {/* Retro Corner Pixels */}
         <div className="absolute top-0 left-0 w-3 h-3 bg-neon-cyan" />
         <div className="absolute top-0 right-0 w-3 h-3 bg-neon-pink" />

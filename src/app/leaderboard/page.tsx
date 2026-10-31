@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/8bit/button";
 import { Badge } from "@/components/ui/8bit/badge";
+import { ArcadeFloatingDecorations } from "@/components/ui/ArcadeFloatingDecorations";
 
 interface LeaderboardEntry {
   rank: number;
@@ -151,24 +152,26 @@ export default function LeaderboardPage() {
 
       {/* Hero Banner */}
       <div className="bg-card border-2 border-border p-6 sm:p-8 text-center relative overflow-hidden shadow-[0_0_30px_rgba(250,204,21,0.1)]">
+        <ArcadeFloatingDecorations variant="compact" />
+
         <div className="absolute top-0 left-0 w-3 h-3 bg-neon-cyan" />
         <div className="absolute top-0 right-0 w-3 h-3 bg-neon-pink" />
         <div className="absolute bottom-0 left-0 w-3 h-3 bg-neon-green" />
         <div className="absolute bottom-0 right-0 w-3 h-3 bg-neon-yellow" />
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 bg-background border border-neon-yellow text-neon-yellow text-xs font-mono">
+        <div className="relative z-10 inline-flex items-center gap-2 px-3 py-1 mb-4 bg-background border border-neon-yellow text-neon-yellow text-xs font-mono">
           <Trophy className="w-3.5 h-3.5" />
           <span>GLOBAL HIGH SCORES</span>
         </div>
 
-        <h1 className="font-['Press_Start_2P'] text-xl sm:text-3xl md:text-4xl text-foreground tracking-tight mb-4 leading-relaxed">
+        <h1 className="relative z-10 font-['Press_Start_2P'] text-xl sm:text-3xl md:text-4xl text-foreground tracking-tight mb-4 leading-relaxed">
           HALL OF FAME
         </h1>
-        <p className="text-sm text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed mb-6">
+        <p className="relative z-10 text-sm text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed mb-6">
           Benchmark your GitHub presence against industry legends. Every profile is evaluated by DevScope's 100% deterministic engineering engine.
         </p>
 
-        <Link href="/#audit-form">
+        <Link href="/#audit-form" className="relative z-10 inline-block">
           <Button
             size="lg"
             className="bg-primary text-white hover:bg-primary/90 border-none font-['Press_Start_2P'] text-xs py-3.5 px-6 shadow-[0_0_20px_rgba(168,85,247,0.3)] whitespace-nowrap"
