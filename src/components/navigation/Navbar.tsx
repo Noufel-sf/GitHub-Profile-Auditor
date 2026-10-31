@@ -72,30 +72,42 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Center Nav */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-mono tracking-wide">
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wide">
             <Link
               href="/"
-              className="text-foreground hover:text-neon-cyan transition-colors flex items-center gap-1.5"
+              className="text-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
             >
-              <span>[01]</span> HOME
+              <span className="text-neon-cyan font-bold">[01]</span> HOME
             </Link>
             <Link
-              href="/#how-it-works"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1.5"
+              href="/#features"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
             >
-              <span>[02]</span> HOW IT WORKS
+              <span className="text-primary font-bold">[02]</span> FEATURES
+            </Link>
+            <Link
+              href="/#why-it-matters"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+            >
+              <span className="text-neon-pink font-bold">[03]</span> WHY AUDIT
             </Link>
             <Link
               href="/#categories"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1.5"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
             >
-              <span>[03]</span> AUDIT METRICS
+              <span className="text-neon-green font-bold">[04]</span> METRICS
+            </Link>
+            <Link
+              href="/#faq"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
+            >
+              <span className="text-neon-yellow font-bold">[05]</span> FAQ
             </Link>
             <Link
               href="/leaderboard"
-              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1.5"
+              className="text-muted-foreground hover:text-neon-cyan transition-colors flex items-center gap-1"
             >
-              <span>[04]</span> HALL OF FAME
+              <span className="text-primary font-bold">[06]</span> HALL OF FAME
             </Link>
           </nav>
 
@@ -180,11 +192,11 @@ export function Navbar() {
               </div>
 
               {/* Navigation Links */}
-              <nav className="space-y-3 font-mono text-sm mb-8">
+              <nav className="space-y-2.5 font-mono text-sm mb-6">
                 <Link
                   href="/"
                   onClick={closeMenu}
-                  className="flex items-center justify-between p-3 bg-card border border-border/60 hover:border-neon-cyan text-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-foreground transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <span className="text-neon-cyan text-xs font-bold">[01]</span> HOME
@@ -193,12 +205,23 @@ export function Navbar() {
                 </Link>
 
                 <Link
-                  href="/#how-it-works"
+                  href="/#features"
                   onClick={closeMenu}
-                  className="flex items-center justify-between p-3 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <span className="flex items-center gap-2">
-                    <span className="text-primary text-xs font-bold">[02]</span> HOW IT WORKS
+                    <span className="text-primary text-xs font-bold">[02]</span> FEATURES
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </Link>
+
+                <Link
+                  href="/#why-it-matters"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-neon-pink text-xs font-bold">[03]</span> WHY AUDIT
                   </span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
@@ -206,10 +229,21 @@ export function Navbar() {
                 <Link
                   href="/#categories"
                   onClick={closeMenu}
-                  className="flex items-center justify-between p-3 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <span className="flex items-center gap-2">
-                    <span className="text-neon-pink text-xs font-bold">[03]</span> AUDIT METRICS
+                    <span className="text-neon-green text-xs font-bold">[04]</span> AUDIT METRICS
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </Link>
+
+                <Link
+                  href="/#faq"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-neon-yellow text-xs font-bold">[05]</span> FAQ
                   </span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>
@@ -217,10 +251,10 @@ export function Navbar() {
                 <Link
                   href="/leaderboard"
                   onClick={closeMenu}
-                  className="flex items-center justify-between p-3 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-card border border-border/60 hover:border-neon-cyan text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <span className="flex items-center gap-2">
-                    <span className="text-neon-yellow text-xs font-bold">[04]</span> HALL OF FAME
+                    <span className="text-primary text-xs font-bold">[06]</span> HALL OF FAME
                   </span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground" />
                 </Link>

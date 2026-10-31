@@ -129,3 +129,4 @@ export function getPreviousAuditRecord(username: string): StoredAuditRecord | nu
     history.find((h) => h.username.toLowerCase() === username.toLowerCase()) || null
   );
 }
+

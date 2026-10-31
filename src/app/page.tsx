@@ -24,6 +24,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Badge } from "@/components/ui/8bit/badge";
 import { GithubIcon } from "@/components/ui/icons";
 import { AuditHistorySection } from "@/components/dashboard/AuditHistorySection";
+import { FeaturesDirectorySection } from "@/components/landing/FeaturesDirectorySection";
+import { RecruiterComparisonSection } from "@/components/landing/RecruiterComparisonSection";
+import { FaqSection } from "@/components/landing/FaqSection";
 
 export default function HomePage() {
   const router = useRouter();
@@ -149,10 +152,13 @@ export default function HomePage() {
         </div>
 
         {/* Audit History & Pinned Squad (shown if history exists) */}
-        <div className="w-full max-w-5xl mt-12">
+        <div id="history" className="w-full max-w-5xl mt-12">
           <AuditHistorySection />
         </div>
       </section>
+
+      {/* ARCADE FEATURE DIRECTORY & NAVIGATOR */}
+      <FeaturesDirectorySection />
 
       {/* HOW IT WORKS */}
       <section id="how-it-works" className="w-full bg-secondary/50 border-y border-border py-20 relative">
@@ -211,6 +217,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* WHY AUDIT MATTERS // RECRUITER REALITY CHECK */}
+      <RecruiterComparisonSection />
 
       {/* 5 AUDIT CATEGORIES SECTION */}
       <section id="categories" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
@@ -396,6 +405,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* KNOWLEDGE BASE // FAQ */}
+      <FaqSection />
 
       {/* CALL TO ACTION */}
       <section className="w-full bg-secondary/60 border-t border-border py-20 text-center">

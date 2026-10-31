@@ -298,3 +298,4 @@ export function AuditHistorySection({ currentUsername }: AuditHistorySectionProp
     </div>
   );
 }
+

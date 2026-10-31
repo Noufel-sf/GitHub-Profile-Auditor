@@ -32,32 +32,32 @@ export function Footer() {
 
           <div>
             <h4 className="text-foreground font-['Press_Start_2P'] text-[10px] mb-3 text-neon-cyan">
-              AUDIT CORE
+              NAVIGATION
             </h4>
             <ul className="space-y-2 text-[11px]">
               <li>
-                <Link href="/#categories" className="hover:text-foreground transition-colors">
-                  &gt; Profile Quality (15%)
+                <Link href="/#features" className="hover:text-neon-cyan transition-colors">
+                  &gt; Feature Arsenal
                 </Link>
               </li>
               <li>
-                <Link href="/#categories" className="hover:text-foreground transition-colors">
-                  &gt; Repository Quality (30%)
+                <Link href="/#why-it-matters" className="hover:text-neon-pink transition-colors">
+                  &gt; Recruiter Reality Check
                 </Link>
               </li>
               <li>
-                <Link href="/#categories" className="hover:text-foreground transition-colors">
-                  &gt; Code Indicators (25%)
+                <Link href="/#categories" className="hover:text-neon-green transition-colors">
+                  &gt; Audit Weights (5-Axis)
                 </Link>
               </li>
               <li>
-                <Link href="/#categories" className="hover:text-foreground transition-colors">
-                  &gt; Documentation (15%)
+                <Link href="/#faq" className="hover:text-neon-yellow transition-colors">
+                  &gt; Knowledge Base // FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/#categories" className="hover:text-foreground transition-colors">
-                  &gt; Activity & Hygiene (15%)
+                <Link href="/leaderboard" className="hover:text-primary transition-colors">
+                  &gt; Arcade Hall of Fame
                 </Link>
               </li>
             </ul>
@@ -65,22 +65,27 @@ export function Footer() {
 
           <div>
             <h4 className="text-foreground font-['Press_Start_2P'] text-[10px] mb-3 text-neon-pink">
-              TERMINAL
+              LIVE SAMPLES
             </h4>
             <ul className="space-y-2 text-[11px]">
               <li>
                 <Link href="/audit/torvalds" className="hover:text-foreground transition-colors">
-                  &gt; Sample: torvalds
+                  &gt; Live Audit: @torvalds
                 </Link>
               </li>
               <li>
-                <Link href="/audit/shadcn" className="hover:text-foreground transition-colors">
-                  &gt; Sample: shadcn
+                <Link href="/report/shadcn" className="hover:text-foreground transition-colors">
+                  &gt; Report: @shadcn
                 </Link>
               </li>
               <li>
-                <Link href="/leaderboard" className="hover:text-foreground transition-colors">
-                  &gt; Hall of Fame
+                <Link href="/report/shadcn/roadmap" className="hover:text-foreground transition-colors">
+                  &gt; RPG Quests: @shadcn
+                </Link>
+              </li>
+              <li>
+                <Link href="/api/badge/torvalds" target="_blank" className="hover:text-foreground transition-colors">
+                  &gt; SVG Badge Endpoint
                 </Link>
               </li>
               <li>
@@ -90,7 +95,7 @@ export function Footer() {
                   rel="noreferrer"
                   className="hover:text-foreground transition-colors flex items-center gap-1"
                 >
-                  <GithubIcon className="w-3 h-3" /> GitHub Docs
+                  <GithubIcon className="w-3 h-3" /> GitHub REST API
                 </a>
               </li>
             </ul>
